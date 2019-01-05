@@ -1,0 +1,4 @@
+---
+- name: update system
+  command: sudo apt-get update
+  ignore_errors: True
