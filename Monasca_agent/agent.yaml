@@ -1,0 +1,74 @@
+Api:
+  # To configure Keystone correctly, a project-scoped token must be acquired.
+  # To accomplish this, the configuration must be set up with one of the
+  # following scenarios:
+  #   Set username and password and you have a default project set in keystone.
+  #   Set username, password and project id.
+  #   Set username, password, project name and (domain id or domain name).
+  #
+  # Monitoring API URL (example: https://region-a.geo-1.monitoring.hpcloudsvc.com:8080/v2.0)
+  # If undefined, it will be pulled from Keystone Service Catalog optionally filtering by
+  # service_type ('monitoring' by default), endpoint_type ('publicURL' by default) and/or
+  # region_name (none by default).
+  url: https://localhost:8070
+  service_type: monitoring
+  endpoint_type: publicURL
+  region_name: none
+  # Keystone Username
+  username: mini-mon
+  # Keystone Password
+  password: "password"
+  # Keystone API URL: URL for the Keystone server to use
+  # Example: https://region-a.geo-1.identity.hpcloudsvc.com:35357/v3/
+  keystone_url: https://localhost:5000
+
+Main:
+  # Force the hostname to whatever you want.
+  hostname: Powermonitoring
+
+  # Optional dimensions to be sent with every metric from this node
+  # They should be in the format name: value
+  # Example of dimensions below
+  # dimensions:
+  #   service: nova
+  #   group: group_a
+  #   environment: production
+  dimensions: 
+    service: PowerMonitoring
+
+  # Set the threshold for accepting points to allow anything
+  # with recent_point_threshold seconds
+  # Defaults to 30 seconds if no value is provided
+  #recent_point_threshold: 30
+
+  # time to wait between collection runs
+  check_freq: 10
+
+  # Number of Collector Threads to run
+  num_collector_threads: 1
+  # Maximum number of collection cycles where all of the threads in the pool are
+  # still running plugins before the collector will exit
+  pool_full_max_retries: {args.pool_full_max_retries}
+
+  # Threshold value for warning on collection time of each check (in seconds)
+  sub_collection_warn: {args.plugin_collect_time_warn}
+
+  # Collector restart interval (in hours)
+  collector_restart_interval: 24
+
+  # Change port the Agent is listening to
+  # listen_port: 17123
+
+  # Allow non-local traffic to this Agent
+  # This is required when using this Agent as a proxy for other Agents
+  # that might not have an internet connection
+  # For more information, please see
+  # https://github.com/DataDog/dd-agent/wiki/Network-Traffic-and-Proxy-Configuration
+  # non_local_traffic: no
+
+  # Submits all metrics to this tenant unless specified by the metric.
+  # This is the equivalent of submitting delegated_tenant with all metrics, and when
+  # not set will submit metrics to the default tenant of the provided credentials.
+  # Used when deploying the agent to systems where the credentials of the monitored
+  # tenant are not known.
+  # global_delegated_tenant:
