@@ -1,0 +1,7 @@
+---
+- name: make rpi ready4use
+  command: sudo apt-get update
+  ignore_errors: True
+  command: sudo apt-get install python3.6
+  ignore_errors: True
+  command: git clone https://github.com/Astron-Power-Monitoring/RPI.git /home/pi/Documents/sfs
