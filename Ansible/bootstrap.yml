@@ -1,7 +1,10 @@
 - hosts: pi
   become: true
-  
-  tasks:
-   - include_role:
-       name: start_up
 
+  tasks:
+   - git:
+       repo: https://github.com/Astron-Power-Monitoring/RPI.git
+       dest: /home/pi/Documents/sfs
+       refspec: '+refs/pull/*:refs/heads/*'
+#   - include_role:
+#       name: CloneGit

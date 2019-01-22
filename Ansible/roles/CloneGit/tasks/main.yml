@@ -1,0 +1,8 @@
+---
+#- name: remove old directory
+#  command: rm -r /home/pi/Documents/sfs
+#
+- name: clone git repo
+  command: git clone https://github.com/Astron-Power-Monitoring/RPI.git /home/pi/Documents/sfs
+  ignore_errors: True
+
