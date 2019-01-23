@@ -3,4 +3,4 @@
 
   tasks:
    - include_role:
-       name: CloneGit
+       name: mk_ready4use
