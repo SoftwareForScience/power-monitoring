@@ -86,7 +86,7 @@ if __name__ == '__main__':
 			filtered_current.updatevalue(inamodule.current()	       , 0.1)
 			filtered_voltage.updatevalue(inamodule.voltage() * 1000, 0.1)
 		
-		filtered_power = current.averagevalue * voltage.averagevalue / 1000
+		filtered_power = filtered_current.averagevalue * filtered_voltage.averagevalue / 1000
 		
 		# post metrics
 		prometheus_current.set(filtered_current)
