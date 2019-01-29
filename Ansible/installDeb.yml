@@ -1,6 +1,13 @@
 - hosts: pi
   become: true
-
   tasks:
+   - git:
+      repo: 'https://github.com/Astron-Power-Monitoring/RPI.git'
+      dest: /home/pi/Documents/sfs
+
+   - pip:
+      executable: pip3
+      name: prometheus_client, matplotlib, psutil, time, pi-ina219
+
    - include_role:
-       name: mk_ready4use
+      name: InstallUpdateDeb

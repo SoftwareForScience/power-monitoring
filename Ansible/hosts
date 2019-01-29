@@ -43,7 +43,7 @@
 ## db-[99:101]-node.example.com
 
 [pi]
-RPI10 ansible_host=192.168.1.10
+#RPI10 ansible_host=192.168.1.10
 #RPI11 ansible_host=192.168.1.11
-#RPI12 ansible_host=192.168.1.12
+RPI12 ansible_host=192.168.1.12
 #RPI13 ansible_host=192.168.1.13
