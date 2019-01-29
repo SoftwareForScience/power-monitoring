@@ -22,6 +22,13 @@ from .prometheus_filter import Filtervalue
 #-------------------------------------------------------------------
 
 
+#-------------------------------------------------------------------
+# 
+# multithreading for filtering and posting
+# 
+# 
+#-------------------------------------------------------------------
+
 collect_time = 1
 
 
@@ -33,7 +40,8 @@ REQUEST_TIME = Summary('request_processing_seconds',
                        'Time spent processing request')
 
 prometheus_current = Gauge('energy_current', 'Filtered current of the system')
-prometheus_voltage = Gauge('energy_voltage', 'Filtered voltage of the system')prometheus_power = Gauge('energy_power', 'Filtered power of the system')
+prometheus_voltage = Gauge('energy_voltage', 'Filtered voltage of the system')
+prometheus_power = Gauge('energy_power', 'Filtered power of the system')
 
 
 filtered_current = Filtervalue(inamodule.current())
