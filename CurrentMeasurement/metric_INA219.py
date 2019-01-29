@@ -89,6 +89,6 @@ if __name__ == '__main__':
 		filtered_power = filtered_current.averagevalue * filtered_voltage.averagevalue / 1000
 		
 		# post metrics
-		prometheus_current.set(filtered_current)
-		prometheus_voltage.set(filtered_voltage)
-		prometheus_power.set(filtered_power)
+		prometheus_current.set(filtered_current.averagevalue)
+		prometheus_voltage.set(filtered_voltage.averagevalue)
+		prometheus_power.set(filtered_power.averagevalue)
