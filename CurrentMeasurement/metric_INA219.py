@@ -91,4 +91,4 @@ if __name__ == '__main__':
 		# post metrics
 		prometheus_current.set(filtered_current.averagevalue)
 		prometheus_voltage.set(filtered_voltage.averagevalue)
-		prometheus_power.set(filtered_power.averagevalue)
+		prometheus_power.set(filtered_power)
