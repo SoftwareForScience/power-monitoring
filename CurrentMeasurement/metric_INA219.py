@@ -5,7 +5,6 @@ from prometheus_client import start_http_server, Summary, Gauge
 
 from ina219 import INA219, DeviceRangeError
 from subprocess import PIPE, Popen
-import time
 import psutil
 import matplotlib.pyplot as plt
 
