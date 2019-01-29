@@ -5,11 +5,37 @@ from prometheus_client import start_http_server, Summary, Gauge
 
 from ina219 import INA219, DeviceRangeError
 from subprocess import PIPE, Popen
-import time
 import psutil
-import matplotlib.pyplot as plt
+import time
 
-from .prometheus_filter import Filtervalue
+
+
+class Filtervalue:
+	def __init__(self, initialvalue):
+		self.averagevalue = initialvalue
+	
+	# def __init__(self, initialvalue, sumcount):
+		# self.sumcount = sumcount
+		# self.lastvalues = []
+		
+		# for x in range(0, self.sumcount+1):		#0-100
+			# self.lastvalues[x] = self.averagevalue
+		
+	
+	def updatevalue(self, newvalue, avgweight):		# three different types of filter
+		# sumofvalues = 0
+		
+		# self.lastvalues[self.sumcount] = self.newvalue	#100
+		
+		# for x in range(0, self.sumcount):		#0-99
+			# self.lastvalues[x] = self.lastvalues[x+1]
+			# sumofvalues += self.lastvalues[x]
+		
+		# self.averagevalue = sumofvalues / self.sumcount
+		
+		# self.lastvalues[sumcount] = ((sumofvalues * (1-avgweight)) + (self.newvalue * (avgweight))) / sumcount		#extra filtering
+		
+		self.averagevalue = (self.averagevalue * (1-avgweight)) + (newvalue * avgweight)
 
 #-------------------------------------------------------------------
 # Willen we hier nog naar kijken of niet???
@@ -32,7 +58,7 @@ collect_time = 1
 
 
 inamodule = INA219(0.1, 2.0)
-inamodule.configure(ina.RANGE_16V, GAIN_8_320MV, ADC_12BIT, ADC_12BIT)
+inamodule.configure(inamodule.RANGE_16V, inamodule.GAIN_8_320MV, inamodule.ADC_12BIT, inamodule.ADC_12BIT)
 
 
 REQUEST_TIME = Summary('request_processing_seconds',
@@ -57,12 +83,12 @@ if __name__ == '__main__':
 		# Filter every /interval/ time
 		start_time = time.time()
 		while time.time() < start_time + collect_time:
-			filtered_current.updatevalue(inamodule.current()       , 0.1)
+			filtered_current.updatevalue(inamodule.current()	       , 0.1)
 			filtered_voltage.updatevalue(inamodule.voltage() * 1000, 0.1)
 		
-		filtered_power = current.averagevalue * voltage.averagevalue / 1000
+		filtered_power = filtered_current.averagevalue * filtered_voltage.averagevalue / 1000
 		
 		# post metrics
-		prometheus_current.set(filtered_current)
-		prometheus_voltage.set(filtered_voltage)
+		prometheus_current.set(filtered_current.averagevalue)
+		prometheus_voltage.set(filtered_voltage.averagevalue)
 		prometheus_power.set(filtered_power)
