@@ -57,7 +57,7 @@ collect_time = 1
 
 
 inamodule = INA219(0.1, 2.0)
-inamodule.configure(ina.RANGE_16V, GAIN_8_320MV, ADC_12BIT, ADC_12BIT)
+inamodule.configure(RANGE_16V, GAIN_8_320MV, ADC_12BIT, ADC_12BIT)
 
 
 REQUEST_TIME = Summary('request_processing_seconds',
