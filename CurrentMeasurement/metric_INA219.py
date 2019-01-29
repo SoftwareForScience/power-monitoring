@@ -10,43 +10,52 @@ import time
 import psutil
 import matplotlib.pyplot as plt
 
-SHUNT_OHMS = 0.1
-MAX_EXPECTED_AMPS = 2.0
-ina = INA219(SHUNT_OHMS, MAX_EXPECTED_AMPS)
-ina.configure(ina.RANGE_16V)
+from .prometheus_filter import Filtervalue
 
-REQUEST_TIME = Summary('request_processing_seconds',
-                       'Time spent processing request')
-g1 = Gauge('Power_usage', 'Description of gauge')
-g1.set(ina.power())
-
-g2 = Gauge('Voltage', 'Description of gauge')
-g2.set(abs(ina.current()))
-
+#-------------------------------------------------------------------
+# Willen we hier nog naar kijken of niet???
 
 #def get_cpu_temperature():
 #    process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
 #    output, _error = process.communicate()
 #    return float(output[output.index('=') + 1:output.rindex("'")])
+#-------------------------------------------------------------------
 
 
-#g3 = Gauge('Temperature', 'Description of gauge')
-#g3.set(get_cpu_temperature())
+collect_time = 1
 
 
-# Decorate function with metric.
-@REQUEST_TIME.time()
-def process_request(t):
-    """A dummy function that takes some time."""
-    time.sleep(t)
+inamodule = INA219(0.1, 2.0)
+inamodule.configure(ina.RANGE_16V, GAIN_8_320MV, ADC_12BIT, ADC_12BIT)
+
+
+REQUEST_TIME = Summary('request_processing_seconds',
+                       'Time spent processing request')
+
+prometheus_current = Gauge('energy_current', 'Filtered current of the system')
+prometheus_voltage = Gauge('energy_voltage', 'Filtered voltage of the system')prometheus_power = Gauge('energy_power', 'Filtered power of the system')
+
+
+filtered_current = Filtervalue(inamodule.current())
+filtered_voltage = Filtervalue(inamodule.voltage() * 1000)
+filtered_power = 0.0
 
 
 if __name__ == '__main__':
-    # Start up the server to expose the metrics.
-    start_http_server(8000)
-    # Generate some requests.
-    while True:
-        process_request(random.random())
-        g1.set(ina.power())
-        g2.set(abs(ina.current()))
-#        g3.set(get_cpu_temperature())
+	# Start server for Prometheus to listen to
+	start_http_server(8000)
+	
+	while True:
+		
+		# Filter every /interval/ time
+		start_time = time.time()
+		while time.time() < start_time + collect_time:
+			filtered_current.updatevalue(inamodule.current()       , 0.1)
+			filtered_voltage.updatevalue(inamodule.voltage() * 1000, 0.1)
+		
+		filtered_power = current.averagevalue * voltage.averagevalue / 1000
+		
+		# post metrics
+		prometheus_current.set(filtered_current)
+		prometheus_voltage.set(filtered_voltage)
+		prometheus_power.set(filtered_power)
