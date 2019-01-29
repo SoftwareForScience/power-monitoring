@@ -35,7 +35,7 @@ class Filtervalue:
 		
 		# self.lastvalues[sumcount] = ((sumofvalues * (1-avgweight)) + (self.newvalue * (avgweight))) / sumcount		#extra filtering
 		
-		self.averagevalue = (self.averagevalue * (1-avgweight)) + (self.newvalue * avgweight)
+		self.averagevalue = (self.averagevalue * (1-avgweight)) + (newvalue * avgweight)
 
 #-------------------------------------------------------------------
 # Willen we hier nog naar kijken of niet???
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 		# Filter every /interval/ time
 		start_time = time.time()
 		while time.time() < start_time + collect_time:
-			filtered_current.updatevalue(inamodule.current()       , 0.1)
+			filtered_current.updatevalue(inamodule.current()	       , 0.1)
 			filtered_voltage.updatevalue(inamodule.voltage() * 1000, 0.1)
 		
 		filtered_power = current.averagevalue * voltage.averagevalue / 1000
