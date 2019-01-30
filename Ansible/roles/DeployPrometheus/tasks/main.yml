@@ -1,3 +1,6 @@
 ---
 - name: start up powermonitoring
-  command: python3 /home/pi/Documents/sfs/CurrentMeasurement/metric_INA219.py
+  command: python3 /home/pi/Documents/sfs/CurrentMeasurement/metric_INA219.py &
+
+- name: start prometheus
+  command: /home/pi/Documents/sfs/prometheus-2.7.0.linux-armv7/prometheus --config.file=prometheus.yml &
