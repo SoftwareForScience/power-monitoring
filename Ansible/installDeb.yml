@@ -7,7 +7,7 @@
 
    - pip:
       executable: pip3
-      name: prometheus_client, matplotlib, psutil, time, pi-ina219
+      name: prometheus_client, matplotlib, psutil, pi-ina219, Adafruit-GPIO, Adafruit-PureIO
 
    - include_role:
       name: InstallUpdateDeb
