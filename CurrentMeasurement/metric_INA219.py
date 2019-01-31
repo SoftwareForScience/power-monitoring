@@ -68,14 +68,21 @@ prometheus_current = Gauge('energy_current', 'Filtered current of the system')
 prometheus_voltage = Gauge('energy_voltage', 'Filtered voltage of the system')
 prometheus_power = Gauge('energy_power', 'Filtered power of the system')
 
+prometheus_cpu_percent = Gauge('cpu_percent', 'Filtered CPU percentage')
+prometheus_memory_mb = Gauge('memory_mb', 'Filtered RAM consumption')
 
+
+#initialize variables with Filtervalue constructor
 filtered_current = Filtervalue(inamodule.current())
 filtered_voltage = Filtervalue(inamodule.voltage() * 1000)
 filtered_power = 0.0
 
+filtered_cpu_percent = Filtervalue(psutil.cpu_percent())
+filtered_memory_mb = Filtervalue(0.0)
+
 
 if __name__ == '__main__':
-	# Start server for Prometheus to listen to
+	# Start server for Prometheus to scrape from
 	start_http_server(8000)
 	
 	while True:
@@ -85,6 +92,10 @@ if __name__ == '__main__':
 		while time.time() < start_time + collect_time:
 			filtered_current.updatevalue(inamodule.current()	       , 0.1)
 			filtered_voltage.updatevalue(inamodule.voltage() * 1000, 0.1)
+			
+			filtered_cpu_percent.updatevalue(psutil.cpu_percent(), 0.1)
+			ram = psutil.virtual_memory()
+			filtered_memory_mb.updatevalue(ram.used / 1048576, 0.1)		# b to mb
 		
 		filtered_power = filtered_current.averagevalue * filtered_voltage.averagevalue / 1000
 		
@@ -92,3 +103,6 @@ if __name__ == '__main__':
 		prometheus_current.set(filtered_current.averagevalue)
 		prometheus_voltage.set(filtered_voltage.averagevalue)
 		prometheus_power.set(filtered_power)
+		
+		prometheus_cpu_percent.set(filtered_cpu_percent.averagevalue)
+		prometheus_memory_mb.set(filtered_memory_mb.averagevalue)
