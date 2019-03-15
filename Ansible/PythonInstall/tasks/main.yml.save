@@ -1,0 +1,6 @@
+---
+- name: Install python3
+  command: sudo apt-get install python3.5
+
+- name: Update alternitives for python
+  command: sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1
