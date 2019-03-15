@@ -1,0 +1,11 @@
+- hosts: pi
+  become: true
+
+  tasks:
+   - git:
+       repo: 'https://github.com/Astron-Power-Monitoring/RPI.git'
+       dest: /home/pi/Documents/sfs
+       force: yes
+
+   - include_role:
+       name: DeployPrometheus
