@@ -6,6 +6,10 @@
 sudo chown pi:pi -R ../.ssh
 sudo chown pi:pi -R ../docker-cluster
 
+# Add SSH-key to system
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+
 # Sorry, we need git
 sudo apt-get install -y git
 git pull origin master
