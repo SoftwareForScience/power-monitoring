@@ -1,0 +1,4 @@
+[submodule "docker-cluster"]
+	path = docker-cluster
+	url = git@gitlab.twizzel.net:hva/docker-cluster.git
+	branch = master
