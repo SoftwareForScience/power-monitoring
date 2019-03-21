@@ -15,6 +15,9 @@ client4 = docker.DockerClient(base_url='tcp://192.168.1.9:4243',  tls=False)
 
 
 pool = ThreadPoolExecutor(50)
+#clients = [client1]
+#clients = [client1,client2]
+#clients = [client1,client2,client3]
 clients = [client1,client2,client3,client4]
 
 messages= [
