@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo cp resolv.conf /etc/resolv.conf
 
-# Update OS & Install git & pip
+# Update OS & Install pip (& git if init not run...)
 sudo apt-get install
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
