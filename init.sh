@@ -5,6 +5,9 @@
 # Don't ask, don't say anything, just run this file idiot!)
 sudo chown pi:pi -R ../.ssh
 sudo chown pi:pi -R ../docker-cluster
+
+# Sorry, we need git
+sudo apt-get install -y git
 git pull origin master
 
 # Now we gonna setup something...
