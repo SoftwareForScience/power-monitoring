@@ -7,7 +7,7 @@ def fun(message, client):
     
     for line in container.logs(stream=True):
         print (line.strip())
-client1 = docker.DockerClient(base_url='tcp://192.168.1.7:4243',  tls=False)
+client1 = docker.DockerClient(base_url='tcp://192.168.1.8:4243',  tls=False)
 messages= [
 "c4ca4238a0b923820dcc509a6f75849b",
 "c4ca4238a0b923820dcc509a6f758491",
