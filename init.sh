@@ -2,7 +2,7 @@
 
 # Change user to pi
 # (already pi, but to be sure, nothing harmfull...
-#Don't ask, don't say anything, just run this file idiot!
+# Don't ask, don't say anything, just run this file idiot!
 sudo chown pi:pi -R ../.ssh
 sudo chown pi:pi -R ../docker-cluster
 git pull origin master
