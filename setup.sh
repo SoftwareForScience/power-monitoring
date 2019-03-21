@@ -9,9 +9,9 @@ sudo apt-get install -y git
 sudo apt-get install -y python-pip
 
 # Setup ssh-key
-sudo cp -r .ssh ~/.ssh
-sudo chown pi:pi -R ~/.ssh
-sudo chmod 700 -R ~/.ssh
+#sudo cp -r .ssh ~/.ssh
+#sudo chown pi:pi -R ~/.ssh
+#sudo chmod 700 -R ~/.ssh
 
 # Install docker
 sudo chmod +x get-docker.sh
