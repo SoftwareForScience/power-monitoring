@@ -2,7 +2,7 @@
 
 1. First of all download the latest raspbian image.
 Download this from:
-https://sfs.twizzel.net/images/ (latest is [twizzel-raspbian-v0.1.3.img](https://sfs.twizzel.net/images/twizzel-raspbian-v0.1.3.img).
+https://sfs.twizzel.net/images/ (latest is [twizzel-raspbian-v0.1.3.img](https://sfs.twizzel.net/images/twizzel-raspbian-v0.1.3.tar.gz).
 2. Flash this image on your sd-card or USB-stick.
 3. Boot your Raspberry Pi.
 4. SSH to you Raspberry Pi.
