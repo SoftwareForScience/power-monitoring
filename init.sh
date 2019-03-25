@@ -7,8 +7,8 @@ sudo chown pi:pi -R ../.ssh
 sudo chown pi:pi -R ../docker-cluster
 
 # Add SSH-key to system
-#eval $(ssh-agent -s)
-#ssh-add ~/.ssh/id_rsa
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
 
 # DNS fix
 sudo cp dhcpcd.conf /etc/dhcpcd.conf
