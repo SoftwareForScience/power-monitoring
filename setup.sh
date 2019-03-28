@@ -43,7 +43,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 
 # Swarm Setup
-docker swarm join --token SWMTKN-1-2ykeifmtnzicmpt0cc4ly5bfxwum1sxigb8mag163dc5iq21as-3jk1ict0xj6h2b1bnne48s78i 192.168.1.15:2377
+sudo docker swarm join --token SWMTKN-1-2ykeifmtnzicmpt0cc4ly5bfxwum1sxigb8mag163dc5iq21as-3jk1ict0xj6h2b1bnne48s78i 192.168.1.15:2377
 
 # Yeahhh... Some sneaky reference ;-)
 echo "SETUP DONE! - Made by Twizzel"
