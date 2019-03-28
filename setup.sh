@@ -24,8 +24,12 @@ sudo ./get-docker.sh
 sudo pip install docker
 sudo pip install futures
 
+# Redo (idk why this is needed again, but it is)
+sudo apt-get update
+sudo apt-get -y dist-upgrade
+
 # Build Docker Image
-sudo docker build -t twizzel/clustermd5sum docker-image
+#sudo docker build -t twizzel/clustermd5sum docker-image
 
 # Make Docker API public
 sudo mkdir /etc/systemd/system/docker.service.d
