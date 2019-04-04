@@ -1,3 +1,5 @@
+(Original repository: https://gitlab.twizzel.net/hva/docker-cluster)
+
 # How to install a docker-cluster node
 
 1. First of all download the latest raspbian image.
