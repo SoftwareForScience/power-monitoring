@@ -1,0 +1,6 @@
+version: '2'
+services:
+  metricbeat:
+    image: twizzel/metricbeat:latest
+    volumes:
+      - ./config/metricbeat.yml:/metricbeat.yml

@@ -1,0 +1,26 @@
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+processors:
+- add_cloud_metadata:
+
+output.elasticsearch:
+  hosts: ['elastic.twizzel.net:443']
+  protocol: "https"
+  username: elastic
+  # Read PW from metricbeat.keystore
+  password: "TRUNCATED"
+  ssl.enabled: true
+  #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca/ca.crt"]
+
+setup.kibana:
+  host: "https://kibana.twizzel.net"
+  username: elastic
+  password: "TRUNCATED"
+  protocol: "https"
+  ssl.enabled: true
+  #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca/ca.crt"]
+
+xpack.monitoring.enabled: true
+
