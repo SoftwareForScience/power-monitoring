@@ -1,6 +1,6 @@
 version: '2'
 services:
   metricbeat:
-    image: twizzel/metricbeat:latest
+    image: registry.twizzel.net/docker-builds/metricbeat-arm64-build:latest
     volumes:
       - ./config/metricbeat.yml:/metricbeat.yml
