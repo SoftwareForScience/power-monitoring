@@ -17,7 +17,9 @@
 import argparse
 import re
 from edgetpu.classification.engine import ClassificationEngine
+from PIL import Image
 import numpy as np
+import time
 import cv2
 from picamera.array import PiRGBArray
 from picamera import PiCamera
@@ -57,8 +59,6 @@ def main():
       '--model', help='File path of Tflite model.', required=True)
   parser.add_argument(
       '--label', help='File path of label file.', required=True)
-  parser.add_argument(
-      '--image', help='File path of the image to be recognized.', required=True)
   args = parser.parse_args()
 
   # Initialize Picamera and grab reference to the raw capture
@@ -76,6 +76,9 @@ def main():
   for frame1 in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
 
     t1 = cv2.getTickCount()
+    frame_rate_calc = 1
+    freq = cv2.getTickFrequency()
+    font = cv2.FONT_HERSHEY_SIMPLEX
 
     # Acquire frame and expand frame dimensions to have shape: [1, None, None, 3]
     # i.e. a single-column array, where each item in the column has the pixel RGB value
@@ -83,10 +86,46 @@ def main():
     frame.setflags(write=1)
     frame_expanded = np.expand_dims(frame, axis=0)
 
-    for result in engine.ClassifyWithImage(frame_expanded, top_k=3):
-      print('---------------------------')
-      print(labels[result[0]])
-      print('Score : ', result[1])
+    # prepare the frame for classification by converting (1) it from
+    # BGR to RGB channel ordering and then (2) from a NumPy array to
+    # PIL image format
+    frame_img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame_img = Image.fromarray(frame)
+
+    # make predictions on the input frame
+    start = time.time()
+    results = engine.ClassifyWithImage(frame_img, top_k=1)
+    end = time.time()
+
+    # ensure at least one result was found
+    if len(results) > 0:
+        # draw the predicted class label, probability, and inference
+        # time on the output frame
+        (classID, score) = results[0]
+        text = "{}: {:.2f}% ({:.4f} sec)".format(labels[classID],
+            score * 100, end - start)
+        cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
+            0.5, (0, 0, 255), 2)
+        # loop over the results
+        #for r in results:
+        #    # extract the bounding box and box and predicted class label
+        #    box = r.bounding_box.flatten().astype("int")
+        #    (startX, startY, endX, endY) = box
+        #    label = labels[r.label_id]
+
+        #    # draw the bounding box and label on the image
+        #    cv2.rectangle(orig, (startX, startY), (endX, endY),
+        #        (0, 255, 0), 2)
+        #    y = startY - 15 if startY - 15 > 15 else startY + 15
+        #    text = "{}: {:.2f}%".format(label, r.score * 100)
+        #    cv2.putText(orig, text, (startX, y),
+        #        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+
+    #for result in engine.ClassifyWithImage(frame_img, top_k=3):
+    #  print('---------------------------')
+    #  print(labels[result[0]])
+    #  print('Score : ', result[1])
 
     # Perform the actual detection by running the model with the image as input
     # (boxes, scores, classes, num) = sess.run(
@@ -107,11 +146,11 @@ def main():
     # cv2.putText(frame, "FPS: {0:.2f}".format(frame_rate_calc), (30, 50), font, 1, (255, 255, 0), 2, cv2.LINE_AA)
 
     # All the results have been drawn on the frame, so it's time to display it.
-    # cv2.imshow('Object detector', frame)
+    cv2.imshow('Object detector', frame)
     #
-    # t2 = cv2.getTickCount()
-    # time1 = (t2 - t1) / freq
-    # frame_rate_calc = 1 / time1
+    t2 = cv2.getTickCount()
+    time1 = (t2 - t1) / freq
+    frame_rate_calc = 1 / time1
 
     # Press 'q' to quit
     if cv2.waitKey(1) == ord('q'):
