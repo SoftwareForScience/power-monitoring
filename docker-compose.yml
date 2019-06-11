@@ -2,5 +2,16 @@ version: '2'
 services:
   metricbeat:
     image: registry.twizzel.net/docker-builds/metricbeat-arm64-build:latest
+    hostname: rpi-metric-1
     volumes:
       - ./config/metricbeat.yml:/metricbeat.yml
+      - ./metricbeat:/usr/share/metricbeat
+    links:
+      - prometheus
+  prometheus:
+    image: prom/prometheus-linux-armv7
+    restart: always
+    ports:
+     - 9090:9090
+    volumes:
+     - ./config/prometheus.yml:/etc/prometheus/prometheus.yml

@@ -1,5 +1,5 @@
 metricbeat.config.modules:
-  path: ${path.config}/modules.d/*.yml
+  path: /usr/share/metricbeat/modules.d/*.yml
   reload.enabled: false
 
 processors:
@@ -10,17 +10,25 @@ output.elasticsearch:
   protocol: "https"
   username: elastic
   # Read PW from metricbeat.keystore
-  password: "TRUNCATED"
+  password: "XCTOP/16fcBeW9M3Il5E4g=="
   ssl.enabled: true
   #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca/ca.crt"]
 
+
+#setup.dashboards.directory: ${path.home}/kibana
+# The name of the Kibana index to use for setting the configuration. Default is ".kibana"
+#setup.dashboards.kibana_index: .kibana
+#setup.dashboards.always_kibana: false
+
 setup.kibana:
-  host: "https://kibana.twizzel.net"
+  host: "kibana.twizzel.net:443"
   username: elastic
-  password: "TRUNCATED"
+  password: "XCTOP/16fcBeW9M3Il5E4g=="
   protocol: "https"
   ssl.enabled: true
   #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca/ca.crt"]
+
+#setup.dashboards.enabled: true
 
 xpack.monitoring.enabled: true
 
