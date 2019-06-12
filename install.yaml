@@ -1,1 +1,20 @@
-/home/cas/SfS/Ansible/CorrectAnsible/install.yaml
+---
+- name: This script installs all required packages
+  hosts: cluster
+  tasks:
+  - name: Create temporary script folder
+    shell: mkdir /home/pi/install
+
+  - name: Copy init script to pi's
+    copy:
+      src: ./ansible.sh
+      dest: /home/pi/install/ansible.sh
+
+  - name: Make shell scripts executable
+    shell: sudo chmod +x /home/pi/install/ansible.sh
+
+  - name: execute ansible.sh
+    shell: sudo bash /home/pi/install/ansible.sh
+
+  - name: Delete install folder
+    shell: rm -rf /home/pi/install
