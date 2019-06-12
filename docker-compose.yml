@@ -1,7 +1,7 @@
 version: '2'
 services:
   metricbeat:
-    image: twizzel/metricbeat-arm64:v0.3
+    image: registry.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-build:v0.3
     hostname: rpi-metric-tpu
     network_mode: host
     restart: always
