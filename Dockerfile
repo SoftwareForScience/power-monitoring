@@ -1,5 +1,10 @@
 FROM resin/rpi-raspbian:latest
 
-COPY metricbeat /metricbeat
+COPY ./metricbeat/ /usr/share/metricbeat
 
-CMD ["./metricbeat","-v","-e"]
+USER root
+RUN chown -R root:root /usr/share/metricbeat
+
+WORKDIR /usr/share/metricbeat
+
+CMD ["/usr/share/metricbeat/metricbeat","-v","-e"]
