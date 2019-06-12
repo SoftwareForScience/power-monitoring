@@ -7,7 +7,7 @@
 
   - name: Copy init script to pi's
     copy:
-      src: ./ansible.sh
+      src: ./Scripts/ansible.sh
       dest: /home/pi/install/ansible.sh
 
   - name: Make shell scripts executable
