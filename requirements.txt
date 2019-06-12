@@ -1,0 +1,4 @@
+pi-ina219
+psutil
+prometheus_client
+matplotlib
