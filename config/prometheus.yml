@@ -1,29 +1,21 @@
-# my global config
-global:
-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  # scrape_timeout is set to the global default (10s).
+# Module: prometheus
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.x/metricbeat-module-prometheus.html
 
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets:
-      # - alertmanager:9093
+- module: prometheus
+  #metricsets:
+  #  - stats
+  period: 10s
+  hosts: ["127.0.0.1:9090"]
+  #metrics_path: /metrics
+  metrics_path: '/federate'
+  query:
+    'match[]': '{__name__!=""}'
+  namespace: example
+  #username: "user"
+  #password: "secret"
 
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-rule_files:
-  # - "first_rules.yml"
-  # - "second_rules.yml"
+  # This can be used for service account based authorization:
+  #  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+  #ssl.certificate_authorities:
+  #  - /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
-scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
-    static_configs:
-    - targets: ['localhost:9090']

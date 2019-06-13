@@ -1,17 +1,27 @@
 version: '2'
 services:
   metricbeat:
-    image: registry.twizzel.net/docker-builds/metricbeat-arm64-build:latest
-    hostname: rpi-metric-1
-    volumes:
-      - ./config/metricbeat.yml:/metricbeat.yml
-      - ./metricbeat:/usr/share/metricbeat
-    links:
-      - prometheus
-  prometheus:
-    image: prom/prometheus-linux-armv7
+    image: registry.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-build:latest
     restart: always
+    hostname: rpi-metric-tpu
+    network_mode: host
+    restart: always
+    volumes:
+      - ./config/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - ./config/prometheus.yml:/usr/share/metricbeat/modules.d/prometheus.yml
+      - ./config/docker.yml:/usr/share/metricbeat/modules.d/docker.yml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /proc:/hostfs/proc:ro
+      - /:/hostfs:ro
+    #  - ./metricbeat:/usr/share/metricbeat
+  prometheus:
+    image: registry.twizzel.net/hva/sfs-power-monitoring/prometheus-powermeter-build:latest
+    restart: always
+    hostname: rpi-metric-tpu
     ports:
      - 9090:9090
-    volumes:
-     - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    devices:
+     - "/dev/i2c-1:/dev/i2c-1"
+    #volumes:
+    # - ./config/prometheus.yml:/etc/prometheus/prometheus.yml

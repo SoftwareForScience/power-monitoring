@@ -2,6 +2,13 @@ metricbeat.config.modules:
   path: /usr/share/metricbeat/modules.d/*.yml
   reload.enabled: false
 
+metricbeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+    #- type: prometheus
+    #  hints.enabled: true
+
 processors:
 - add_cloud_metadata:
 
