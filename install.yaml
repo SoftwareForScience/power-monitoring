@@ -18,3 +18,12 @@
 
   - name: Delete install folder
     shell: rm -rf /home/pi/install
+
+  - name: Pull power meter docker image
+    shell: "sudo git clone https://gitlab.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-prometheus-powermeter.git"
+
+  - name: Navigate to power meter docker image
+    shell: "cd metricbeat-arm64-prometheus-powermeter"
+
+  - name: Start docker containers
+     shell: "sudo docker-compose up -d"

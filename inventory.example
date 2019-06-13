@@ -1,12 +1,11 @@
 rpi01 ansible_ssh_host=1.1.1.1
 rpi02 ansible_ssh_host=1.1.1.1
-rpi03 ansible_ssh_host=1.1.1.1
-rpi04 ansible_ssh_host=1.1.1.1
 
 [master]
 rpi01
 
 [slave]
+rpi02
 
 [cluster:children]
 master
