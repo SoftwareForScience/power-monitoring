@@ -1,9 +1,0 @@
----
-- name: install python3
-  command: sudo apt-get install python3.5
- 
-- name: update alternatives 
-  command: sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
-
-- name: set python3 as default
-  command: sudo update-alternatives  --set python /usr/bin/python3.5

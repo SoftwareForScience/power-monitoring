@@ -1,9 +1,0 @@
----
-- name: start up INA
-  command: ./Documents/Currentmeasurement/metric_INA219
-  ignore_errors: True
-
-- name: start up Prometheus
-  command: ./Documents/PowerMonotoring/prometheus-2.5.0.linux-armv7/prometheus --config.file=prometheus.yml
-  ignore_errors: True
-

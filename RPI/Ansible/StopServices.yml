@@ -1,6 +1,0 @@
-- hosts: pi
-  become: true
-
-  tasks:
-   - include_role:
-       name: StopServices

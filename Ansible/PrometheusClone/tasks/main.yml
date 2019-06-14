@@ -1,7 +1,0 @@
----
-- name: go to Documents directory
-  command: cd Documents
-
-- name: clone git repo
-  command: git clone https://github.com/Astron-Power-Monitoring/RPI.git
-

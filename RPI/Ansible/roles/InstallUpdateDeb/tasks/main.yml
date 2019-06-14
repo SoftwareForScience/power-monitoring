@@ -1,8 +1,0 @@
----
-- name: update and install python 3.6
-  apt:
-    name: python3
-    force_apt_get: yes
-    install_recommends: yes
-    update_cache: yes
-

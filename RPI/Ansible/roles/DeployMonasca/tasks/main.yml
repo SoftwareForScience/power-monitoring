@@ -1,6 +1,0 @@
----
-- name: configure monasca agent with monasca setup
-  command: sudo monasca-setup --username admin --password s3cr3t --project_name admin --keystone_url http://localhost:35357/v3 --system_only
-
-- name: deploy monitoring system (agent.py)
-  command: python3 /home/pi/Documents/sfs/Monasca_agent/agent.py
