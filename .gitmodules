@@ -1,0 +1,28 @@
+[submodule "2019-team/submodules/ansible"]
+	path = 2019-team/submodules/ansible
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/ansible.git
+	branch = master
+[submodule "2019-team/submodules/elk-stack-docker"]
+	path = 2019-team/submodules/elk-stack-docker
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/elk-stack-docker.git
+	branch = master
+[submodule "2019-team/submodules/prometheus-powermeter-build"]
+	path = 2019-team/submodules/prometheus-powermeter-build
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/prometheus-powermeter-build.git
+	branch = master
+[submodule "2019-team/submodules/tpu-load-generator"]
+	path = 2019-team/submodules/tpu-load-generator
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/tpu-load-generator.git
+	branch = master
+[submodule "2019-team/submodules/metricbeat-arm64-build"]
+	path = 2019-team/submodules/metricbeat-arm64-build
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-build.git
+	branch = master
+[submodule "2019-team/submodules/metricbeat-arm64-prometheus-powermeter"]
+	path = 2019-team/submodules/metricbeat-arm64-prometheus-powermeter
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-prometheus-powermeter.git
+	branch = master
+[submodule "2019-team/submodules/docker-cluster"]
+	path = 2019-team/submodules/docker-cluster
+	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/docker-cluster.git
+	branch = master
