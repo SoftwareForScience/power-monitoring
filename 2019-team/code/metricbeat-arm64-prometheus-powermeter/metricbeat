@@ -1,0 +1,2 @@
+#!/bin/bash
+docker-compose exec metricbeat /usr/share/metricbeat/metricbeat $1 $2 $3 $4 $5 $6
