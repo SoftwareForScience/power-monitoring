@@ -1,4 +1,4 @@
-# UPDATE 18-07-2019
+# UPDATE 18-06-2019
 The image is no longer available, if you really want to try the custom image, please mail Tom Buskens at t.buskens@twizzel.net
 
 An other option is to just clone this repo on a Fresh installed Raspberry Pi.
