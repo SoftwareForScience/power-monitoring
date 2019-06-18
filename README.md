@@ -7,7 +7,7 @@ If you want to use your own registry or the docker-hub, use the ' - build' repos
 # Metricbeat/prometheus docker-compose file
 To run this compose file you have to prepare a few things.
 
-1. Run the Ansible (see Ansible repository) script to install docker and docker-compose.
+1. Run the Ansible (see Ansible repository) script to install docker, docker-compose and to enable the I2C device.
 2. Setup the ELK-stack (see ELK-stack repository).
 3. Set a few things in config/metricbeat.yml with the settings provided in the ELK-stack. **When you don't have a license, you don't have a username/password login. This is not save so don't make your stack public!**
 ```
