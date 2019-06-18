@@ -1,3 +1,9 @@
+# UPDATE 18-06-2019
+The two custom images of registry.twizzel.net will remain available.
+
+If you want to use your own registry or the docker-hub, use the ' - build' repositories to build, create and push your image.
+
+
 # Metricbeat/prometheus docker-compose file
 To run this compose file you have to prepare a few things.
 
@@ -17,3 +23,23 @@ setup.kibana:
   username: elastic
   password: "XCTOP/16fcBeW9M3Il5E4g=="
 ```
+4. After all this steps your prometheus/metricbeats stack is ready and will send data to your ELK-stack. If you want to test this, you can follow the tutorial on kibana (<kibana_host>/app/kibana#/home/tutorial/prometheusMetrics?_g=())
+
+
+## Tools to check and use
+For docker and docker-compose commands you need sudo! (or you have to be in the 'docker' group)
+
+### Show logs
+```bash
+docker-compose logs -f metricbeat
+docker-compose logs -f prometheus
+```
+
+### Start | Stop | Kill | Restart
+```bash
+docker-compose up -d
+docker-compose stop
+docker-compose kill
+docker-compose restart
+```
+
