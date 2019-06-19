@@ -4,7 +4,7 @@ This README will provide all the necessary steps to install and use Ansible
 
 ## Prerequisites
 
-For Ansible to work, you'll need a host PC and some slaves to execute the Ansible scripts to. The host and slaves need to be accessible by SSH. This can be done by either connecting the systems to the same network using a switch and ethernet cables or a wifi network. The slaves also need to be added to your `~/.ssh/know_hosts` file. use [this](https://oit.colorado.edu/change-host-keys) guide to find out how to do that. This can also be easily be achieved by first connecting to each slave before executing the Ansible script.
+For Ansible to work, you'll need a host PC and some slaves to execute the Ansible scripts to. The host and slaves need to be accessible by SSH. This can be done by either connecting the systems to the same network using a switch and ethernet cables or a wifi network. The slaves also need to be added to your `~/.ssh/know_hosts` file. Use [this](https://oit.colorado.edu/change-host-keys) guide to find out how to do that. This can also be easily be achieved by first connecting to each slave before executing the Ansible script.
 
 ## Install necessary software packages
 
