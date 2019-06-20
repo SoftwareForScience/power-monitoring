@@ -31,5 +31,4 @@
    stage: build
    script:
      - docker build -t registry.twizzel.net/hva/sfs-power-monitoring/prometheus-powermeter-build .
-     - docker run registry.twizzel.net/hva/sfs-power-monitoring/prometheus-powermeter-build
      - docker ps
