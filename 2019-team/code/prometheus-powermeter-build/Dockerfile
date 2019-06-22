@@ -1,5 +1,5 @@
 #FROM resin/rpi-raspbian:latest
-FROM arm32v7/python:3.6-slim-stretch
+FROM amd64/python:3.6-slim-stretch
 
 MAINTAINER Tom Buskens <t.buskens@twizzel.net>
 RUN apt-get update -y
