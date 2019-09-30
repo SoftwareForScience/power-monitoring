@@ -9,3 +9,4 @@ This project is about monitoring power usage of algorithms in a scientific setti
 ## Other links
  * [Google Drive](https://drive.google.com/drive/folders/1eERcP0KF6TMZwpRhuw7JTQKFcHHF9BiZ?usp=sharing)
  * [Trello](https://trello.com/sfspowermonitoring1)
+ * [Blog](https://softwareforscience772503629.wordpress.com/blog-feed/)
