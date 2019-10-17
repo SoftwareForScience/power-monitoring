@@ -1,0 +1,3 @@
+[submodule "ina260/ina260/lib/ina219-linux-lib"]
+	path = ina260/ina260/lib/ina219-linux-lib
+	url = https://github.com/rudimiv/ina219-linux-lib.git
