@@ -1928,20 +1928,6 @@ IPC Nominal Density</description>
 <busses>
 </busses>
 <nets>
-<net name="SCL" class="0">
-<segment>
-<pinref part="BUS" gate="J$1" pin="P$2"/>
-<wire x1="0" y1="8.89" x2="-10.16" y2="8.89" width="0.1524" layer="91"/>
-<label x="-10.16" y="6.35" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="SDA" class="0">
-<segment>
-<pinref part="BUS" gate="J$1" pin="P$1"/>
-<wire x1="0" y1="11.43" x2="-10.16" y2="11.43" width="0.1524" layer="91"/>
-<label x="-10.16" y="11.43" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="GND" class="0">
 <segment>
 <pinref part="PI1" gate="J$1" pin="P$1"/>
@@ -2034,6 +2020,20 @@ IPC Nominal Density</description>
 <wire x1="0" y1="-2.54" x2="-10.16" y2="-2.54" width="0.1524" layer="91"/>
 <pinref part="P+4" gate="1" pin="+5V"/>
 <wire x1="-10.16" y1="0" x2="-10.16" y2="-2.54" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SCL" class="0">
+<segment>
+<pinref part="BUS" gate="J$1" pin="P$1"/>
+<wire x1="0" y1="11.43" x2="-10.16" y2="11.43" width="0.1524" layer="91"/>
+<label x="-10.16" y="11.43" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SDA" class="0">
+<segment>
+<pinref part="BUS" gate="J$1" pin="P$2"/>
+<wire x1="0" y1="8.89" x2="-10.16" y2="8.89" width="0.1524" layer="91"/>
+<label x="-10.16" y="6.35" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
