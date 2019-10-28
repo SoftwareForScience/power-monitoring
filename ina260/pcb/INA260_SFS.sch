@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.5.0">
+<eagle version="9.4.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -7263,6 +7263,62 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="Traco power">
+<description>&lt;h3&gt;Traco Power&lt;/h3&gt;
+&lt;a href="https://github.com/steelcaverobotics/SteelCaveRobotics-Eagle-Libraries"&gt;https://github.com/steelcaverobotics/SteelCaveRobotics-Eagle-Libraries&lt;/a&gt;</description>
+<packages>
+<package name="TSR-1">
+<description>TSR-1
+Series DC/DC Converter</description>
+<pad name="1" x="-2.54" y="-1.5" drill="0.8" diameter="1.8" shape="square"/>
+<pad name="2" x="0" y="-1.5" drill="0.8" diameter="1.8" shape="octagon"/>
+<pad name="3" x="2.54" y="-1.5" drill="0.8" diameter="1.8" shape="octagon"/>
+<wire x1="-5.85" y1="3.8" x2="-5.85" y2="-3.8" width="0.203" layer="21"/>
+<wire x1="-5.85" y1="-3.8" x2="5.85" y2="-3.8" width="0.203" layer="21"/>
+<wire x1="5.85" y1="-3.8" x2="5.85" y2="3.8" width="0.203" layer="21"/>
+<wire x1="5.85" y1="3.8" x2="-5.85" y2="3.8" width="0.203" layer="21"/>
+<text x="-3" y="2" size="1.016" layer="25">&gt;NAME</text>
+<text x="-3" y="0" size="1.016" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="TSR1-2433">
+<description>TSR 1-2433
+3.3v switching regulator</description>
+<wire x1="-7.62" y1="5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="7.62" y2="5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="5.08" x2="-7.62" y2="5.08" width="0.254" layer="94"/>
+<pin name="IN" x="-10.16" y="2.54" visible="pin" length="short" direction="pwr"/>
+<pin name="GND" x="0" y="-7.62" visible="off" length="short" direction="pwr" rot="R90"/>
+<pin name="+3V3" x="10.16" y="2.54" visible="pin" length="short" direction="pwr" rot="R180"/>
+<text x="-5.08" y="6.35" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-2.54" y="-3.81" size="1.778" layer="97">GND</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TSR1-2433">
+<description>Traco Power TSR 1-2433
+3.3v switching regulator</description>
+<gates>
+<gate name="G$1" symbol="TSR1-2433" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TSR-1">
+<connects>
+<connect gate="G$1" pin="+3V3" pad="3"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="IN" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -7362,9 +7418,6 @@ Source: www.kingbright.com</description>
 <part name="POWERUIT" library="Phoenix_connector_DJ" deviceset="CON_3.81MM2_SIDE" device=""/>
 <part name="GND21" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND22" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="5V" library="Phoenix_connector_DJ" deviceset="CON_3.81MM2_SIDE" device=""/>
-<part name="GND23" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="P+2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M0805" package3d_urn="urn:adsk.eagle:package:23556/2" value="4K7"/>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M0805" package3d_urn="urn:adsk.eagle:package:23556/2" value="4K7"/>
@@ -7372,6 +7425,10 @@ Source: www.kingbright.com</description>
 <part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M0805" package3d_urn="urn:adsk.eagle:package:23556/2" value="1K"/>
 <part name="P+7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="GND24" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="U$14" library="Traco power" deviceset="TSR1-2433" device=""/>
+<part name="C_INA5" library="Nordic_misc" deviceset="CAPACITOR" device="_0805_N" value="22 uF"/>
+<part name="GND25" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="P+12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7459,7 +7516,7 @@ Source: www.kingbright.com</description>
 <attribute name="VALUE" x="30.48" y="-46.99" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="P+2" gate="1" x="40.64" y="-119.38" smashed="yes">
-<attribute name="VALUE" x="38.1" y="-124.46" size="1.778" layer="96" rot="R90"/>
+<attribute name="VALUE" x="38.1" y="-119.38" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="R1" gate="G$1" x="35.56" y="-132.08" smashed="yes" rot="R90">
 <attribute name="NAME" x="34.0614" y="-135.89" size="1.778" layer="95" rot="R90"/>
@@ -7478,7 +7535,7 @@ Source: www.kingbright.com</description>
 <attribute name="VALUE" x="29.21" y="-156.718" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="P+7" gate="1" x="17.78" y="-152.4" smashed="yes">
-<attribute name="VALUE" x="15.24" y="-157.48" size="1.778" layer="96" rot="R90"/>
+<attribute name="VALUE" x="15.24" y="-152.4" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="GND24" gate="1" x="45.72" y="-167.64" smashed="yes">
 <attribute name="VALUE" x="43.18" y="-170.18" size="1.778" layer="96"/>
@@ -8427,15 +8484,6 @@ Source: www.kingbright.com</description>
 <instance part="GND22" gate="1" x="-6.35" y="24.13" smashed="yes">
 <attribute name="VALUE" x="-8.89" y="21.59" size="1.778" layer="96"/>
 </instance>
-<instance part="5V" gate="J$1" x="0" y="-5.08" smashed="yes">
-<attribute name="NAME" x="0" y="0" size="1.778" layer="95"/>
-</instance>
-<instance part="GND23" gate="1" x="-6.35" y="-12.7" smashed="yes">
-<attribute name="VALUE" x="-8.89" y="-15.24" size="1.778" layer="96"/>
-</instance>
-<instance part="P+4" gate="1" x="-10.16" y="2.54" smashed="yes">
-<attribute name="VALUE" x="-12.7" y="-2.54" size="1.778" layer="96" rot="R90"/>
-</instance>
 </instances>
 <busses>
 </busses>
@@ -8479,12 +8527,6 @@ Source: www.kingbright.com</description>
 <wire x1="-6.35" y1="26.67" x2="-6.35" y2="25.4" width="0.1524" layer="91"/>
 <junction x="-6.35" y="26.67"/>
 </segment>
-<segment>
-<pinref part="5V" gate="J$1" pin="P$2"/>
-<wire x1="0" y1="-5.08" x2="-6.35" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="-6.35" y1="-5.08" x2="-6.35" y2="-10.16" width="0.1524" layer="91"/>
-<pinref part="GND23" gate="1" pin="GND"/>
-</segment>
 </net>
 <net name="IN-_4" class="0">
 <segment>
@@ -8526,14 +8568,6 @@ Source: www.kingbright.com</description>
 <label x="-10.16" y="33.02" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="+5V" class="0">
-<segment>
-<pinref part="5V" gate="J$1" pin="P$1"/>
-<wire x1="0" y1="-2.54" x2="-10.16" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="P+4" gate="1" pin="+5V"/>
-<wire x1="-10.16" y1="0" x2="-10.16" y2="-2.54" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="SCL" class="0">
 <segment>
 <pinref part="BUS" gate="J$1" pin="P$1"/>
@@ -8546,6 +8580,60 @@ Source: www.kingbright.com</description>
 <pinref part="BUS" gate="J$1" pin="P$2"/>
 <wire x1="0" y1="8.89" x2="-10.16" y2="8.89" width="0.1524" layer="91"/>
 <label x="-10.16" y="6.35" size="1.778" layer="95"/>
+</segment>
+</net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+</plain>
+<instances>
+<instance part="U$14" gate="G$1" x="0" y="0" smashed="yes">
+<attribute name="NAME" x="-5.08" y="6.35" size="1.778" layer="95"/>
+<attribute name="VALUE" x="2.54" y="-7.62" size="1.778" layer="96"/>
+</instance>
+<instance part="C_INA5" gate="C$1" x="-17.78" y="-1.27" smashed="yes">
+<attribute name="NAME" x="-16.256" y="-0.889" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-16.256" y="-5.969" size="1.778" layer="96"/>
+</instance>
+<instance part="GND25" gate="1" x="0" y="-12.7" smashed="yes">
+<attribute name="VALUE" x="-2.54" y="-15.24" size="1.778" layer="96"/>
+</instance>
+<instance part="P+12" gate="1" x="20.32" y="12.7" smashed="yes">
+<attribute name="VALUE" x="17.78" y="7.62" size="1.778" layer="96" rot="R90"/>
+</instance>
+</instances>
+<busses>
+</busses>
+<nets>
+<net name="IN+" class="0">
+<segment>
+<pinref part="U$14" gate="G$1" pin="IN"/>
+<wire x1="-10.16" y1="2.54" x2="-17.78" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="C_INA5" gate="C$1" pin="1"/>
+<wire x1="-17.78" y1="2.54" x2="-30.48" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="1.27" x2="-17.78" y2="2.54" width="0.1524" layer="91"/>
+<junction x="-17.78" y="2.54"/>
+<label x="-30.48" y="2.54" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="C_INA5" gate="C$1" pin="2"/>
+<wire x1="-17.78" y1="-6.35" x2="-17.78" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="-10.16" x2="0" y2="-10.16" width="0.1524" layer="91"/>
+<pinref part="U$14" gate="G$1" pin="GND"/>
+<wire x1="0" y1="-10.16" x2="0" y2="-7.62" width="0.1524" layer="91"/>
+<pinref part="GND25" gate="1" pin="GND"/>
+<junction x="0" y="-10.16"/>
+</segment>
+</net>
+<net name="+5V" class="0">
+<segment>
+<pinref part="U$14" gate="G$1" pin="+3V3"/>
+<wire x1="10.16" y1="2.54" x2="20.32" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="2.54" x2="20.32" y2="10.16" width="0.1524" layer="91"/>
+<pinref part="P+12" gate="1" pin="+5V"/>
 </segment>
 </net>
 </nets>
