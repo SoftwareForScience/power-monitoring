@@ -7429,6 +7429,7 @@ Series DC/DC Converter</description>
 <part name="C_INA5" library="Nordic_misc" deviceset="CAPACITOR" device="_0805_N" value="22 uF"/>
 <part name="GND25" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
+<part name="BUS1" library="Phoenix_connector_DJ" deviceset="CON_3.81MM2_SIDE" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8484,6 +8485,9 @@ Series DC/DC Converter</description>
 <instance part="GND22" gate="1" x="-6.35" y="24.13" smashed="yes">
 <attribute name="VALUE" x="-8.89" y="21.59" size="1.778" layer="96"/>
 </instance>
+<instance part="BUS1" gate="J$1" x="0" y="-1.27" smashed="yes">
+<attribute name="NAME" x="0" y="3.81" size="1.778" layer="95"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8574,12 +8578,22 @@ Series DC/DC Converter</description>
 <wire x1="0" y1="11.43" x2="-10.16" y2="11.43" width="0.1524" layer="91"/>
 <label x="-10.16" y="11.43" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="BUS1" gate="J$1" pin="P$1"/>
+<wire x1="0" y1="1.27" x2="-10.16" y2="1.27" width="0.1524" layer="91"/>
+<label x="-10.16" y="1.27" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SDA" class="0">
 <segment>
 <pinref part="BUS" gate="J$1" pin="P$2"/>
 <wire x1="0" y1="8.89" x2="-10.16" y2="8.89" width="0.1524" layer="91"/>
 <label x="-10.16" y="6.35" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="BUS1" gate="J$1" pin="P$2"/>
+<wire x1="0" y1="-1.27" x2="-10.16" y2="-1.27" width="0.1524" layer="91"/>
+<label x="-10.16" y="-3.81" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
