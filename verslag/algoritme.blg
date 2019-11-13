@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: algoritme.aux
+The style file: ieeetr.bst
+Database file #1: bibliography.bib.bib
+Warning--entry type for "astron" isn't style-file defined
+--line 1 of file bibliography.bib.bib
+Warning--entry type for "Machine_learning" isn't style-file defined
+--line 7 of file bibliography.bib.bib
+Warning--entry type for "Data_analysing" isn't style-file defined
+--line 17 of file bibliography.bib.bib
+Warning--entry type for "Autotune" isn't style-file defined
+--line 25 of file bibliography.bib.bib
+Repeated entry---line 33 of file bibliography.bib.bib
+ : @thesis{Autotune
+ :                 ,
+I'm skipping whatever remains of this entry
+Warning--entry type for "CLEAN" isn't style-file defined
+--line 41 of file bibliography.bib.bib
+Warning--entry type for "interferometry" isn't style-file defined
+--line 59 of file bibliography.bib.bib
+Warning--empty publisher in Sig
+Warning--empty year in Sig
+You've used 7 entries,
+            1876 wiz_defined-function locations,
+            509 strings with 4271 characters,
+and the built_in function-call counts, 835 in all, are:
+= -- 57
+> -- 29
+< -- 0
++ -- 14
+- -- 7
+* -- 32
+:= -- 109
+add.period$ -- 1
+call.type$ -- 7
+change.case$ -- 6
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 33
+empty$ -- 128
+format.name$ -- 7
+if$ -- 210
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 2
+newline$ -- 24
+num.names$ -- 5
+pop$ -- 40
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 49
+stack$ -- 0
+substring$ -- 0
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 5
+width$ -- 8
+write$ -- 42
+(There was 1 error message)
