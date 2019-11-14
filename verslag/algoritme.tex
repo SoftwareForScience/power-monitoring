@@ -118,14 +118,14 @@ The Fourier transform is a mathematical way to describe signals in the frequency
 So the Fourier transform is a tool that can make you go from the time domain \(f(t)\), to the frequency domain \(F(\omega)\). It is written as: \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \] There also is an inverse Fourier transform, logically this goes from the frequency domain to the time domain:\[f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega)e^{j\omega t} d\omega \] 
 
 \newpage
-But how to make sense of this formula? Lets split it up into several parts, starting with \(e^{-j\omega t} dt\). Euler's number to the power of  \(\sqrt{-1} = j = e^j\) moves around in a circle on the complex plane for every \(2\pi\) units. So if we want to describe a sine wave over time \((t)\) we can do \(e^{-j2\pi t}\), but we also need the frequency \((f)\) so that gives \(e^{-j2\pi f t}\) and since \(2 \pi f\) equals \(\omega\) we get \[e^{-j\omega t} \] Right so now you can plot this for a lot of frequencies (from \(-\infty\) to \(\infty\)) and you'd get a bunch of different positions on a circle in the complex plane. Now if you multiply this by your time domain function \(f(t)\) the positions in the circle will align just right with the frequencies that are most present in that function. That way the frequencies that are most present get magnified where frequencies that aren't present stay small. And that is how we get \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \]  
+But how to make sense of this formula? Lets split it up into several parts, starting with \(e^{-j\omega t} dt\). Euler's number to the power of  \(\sqrt{-1} = j\)  so \(e^j\) moves around in a circle on the complex plane for every \(2\pi\) units. So if we want to describe a sine wave over time \((t)\) we can use \(e^{-j2\pi t}\), but we also need the frequency \((f)\) so that gives \(e^{-j2\pi f t}\) and since \(2 \pi f\) equals \(\omega\) we get \[e^{-j\omega t} \] Right so now you can plot this for a lot of frequencies (from \(-\infty\) to \(\infty\)) and you'd get a bunch of different positions on a circle in the complex plane. Now if you multiply this by your time domain function \(f(t)\) the positions in the circle will align just right with the frequencies that are most present in that function. That way the frequencies that are most present get magnified where frequencies that aren't present stay small. And that is how we get \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \]  
 
 \subsection{Discrete Fourier Transform}
 
 In the real world however you don't measure from negative infinity to infinity, since your data will always be over a finite time frame and your sensors won't be able to generate an infinite amount of samples. In the real world you will get a set of discrete points from when you begin plotting \((t_0)\) to the \(N^{th}\) sample \((t_{N-1})\) This is where the discrete Fourier transform (the DFT) comes in, it is described as \[X(k) = \sum_{n = 0}^{N -1} x[n]e^{\frac{-j 2 \pi k n}{N}}\]
 Here it isn't an integral over infinity but a sum for all values of \((n = 0)\) to the total amount of samples \((N -1)\) Also in the exponential \(\frac{k}{N}\) now describes the frequency. But now it instead of any possible frequency we are limited to a set of frequencies which are defined by the sampling frequency, and the total amount of samples \((N)\). This is partly because of the Nyquist limit, which states that to accurately measure a frequency you need to sample at at least twice that frequency. And thus is is impossible to use any frequency higher than: $\frac{sample freqency}{2}$
 
-The DFT is much more suitable for computation since it's a finite set of calculations. 
+The DFT is much more suitable for computation since it is a finite set of calculations. 
 
 \subsection{The Fast Fourier Transform}
 The computation time for computing a Fourier transform is proportional to the amount of samples (\(n\)) squared, \(n^2\) so naturally this gets slow rather fast the higher the number of samples gets. So in 1965 James Cooley and John Tukey developed the Fast Fourier transform (the FFT). With the FFT the computation time is proportional to \(\frac{n}{2}\) \(log_{2}\) \(n\) \cite{Sig} which is significantly faster.
@@ -159,7 +159,7 @@ Now the Fourier transform of these waves is surprisingly simple, a single or a f
 \end{figure} 
 
 Here you can already see that as more dots are added in the frequency domain the two dimensional image gets more complex. And thus you can imagine that any Two dimensional picture can be represented using a matrix of dots in the frequency domain. If colour pictures want to be achieved you will need three of these grey value matrices. One for red, one for green and one for blue when those are put on top of each other a colour picture is made.\par
-In radio astronomy it works the other way around. Instead of having an image which has to be translated to the frequency domain, the array of radio telescopes receives their information in the frequency domain and will have to get it back into the time domain to get a coherent image. To achieve this a reverse FFT will have to be applied on the data. This image from radioastronomydm\cite{interferometry} shows it quite well (transformation goes from right to left): 
+In radio astronomy it works the other way around. Instead of having an image which has to be translated to the frequency domain, the array of radio telescopes receive their information in the frequency domain and will have to convert it back into the time domain to get a coherent image. To achieve this a reverse FFT will have to be applied to the data. This image from radioastronomydm\cite{interferometry} shows it quite well (transformation goes from right to left): 
 
 \begin{figure}[!ht]
 	\centering
@@ -172,21 +172,19 @@ But how exactly does it do this, well that is actually quite simple. First you l
 
 \section{How are we planning to set up a test platform}
 
-We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure the effect of adding and subtracting processors on calculation time and how that affects power consumption. \par 
+We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure how adding and subtracting processors affects Calculation time, power consumption and heat generation.\\To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed dedicated hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
+For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like the ones shown in the examples from figure \ref{2d_sine_with_transform}. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works. The process is illustrated here: 
 
-To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\linewidth]{algorithm_test}
+	\caption{: Test to see if algorithm works}
+	\label{algorithm test}
+\end{figure}
 
-For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like shown in the examples from figure \ref{2d_sine_with_transform}. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works.\\
+Now we also want to know what the influence of multi processing is on power consumption and computation speed, so we will have to design the algorithm in a way that enables us to add and subtract processors without compromising the algorithm. That way we can run the algorithm on a single to \(n\) amount of processors, and measure the effects. 
 
-
-as illustrated here (Illustration image of test here) 
-\\
-
-Now we also want to know what the influence of multi processing is on power consumption and computation speed, so we will have to design the algorithm in a way that enables us to add and subtract processors and it should still be able to run. That way we can run the algorithm on a single to \(n\) amount of processors, and measure the effects. 
-
-
-
-
+\newpage
 
 
 \bibliographystyle{ieeetr}
