@@ -58,7 +58,7 @@ void Client::Command(int argcc, char *argvv[]) {
 //    if(next == false) {
 
     if (argcc < 3) {
-        fprintf(stderr,"usage %s hostname port\n", argvv[0]);
+        fprintf(stderr, "usage %s hostname port\n", argvv[0]);
         exit(0);
     }
 
@@ -70,87 +70,90 @@ void Client::Command(int argcc, char *argvv[]) {
 
     pies = atoi(argvv[1]);
     printf("%d", pies);
-    for(int i = 3; i < (pies + 3); i++) {
+    for (int i = 3; i < (pies + 3); i++) {
 
-    portno = atoi(argvv[2]);
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+        portno = atoi(argvv[2]);
+        sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-    if (sockfd < 0) {
-        Error("ERROR opening socket");
-    }
-
-        server = gethostbyname(argvv[i]);
-        printf("%s\n", argvv[i]);
-
-        if (server == NULL) {
-            fprintf(stderr, "ERROR, no such host\n");
-            exit(0);
+        if (sockfd < 0) {
+            Error("ERROR opening socket");
         }
-        bzero((char *) &serv_addr, sizeof(serv_addr));
-        serv_addr.sin_family = AF_INET;
-        bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr, server->h_length);
-        serv_addr.sin_port = htons(portno);
-        if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-            Error("ERROR connecting");
-        }
+        if (!(strcmp(argvv[i], localhost.c_str()) == 0)) {
+            server = gethostbyname(argvv[i]);
+            printf("%s\n", argvv[i]);
 
-        //printf("Please enter the message: ");
-        bzero(buffer, 256);
-        //fgets(buffer, 255, stdin);
-        buffer[tempp.size() + 1];
-        strcpy(buffer, tempp.c_str());
-        //printf("%s\n", buffer);
-        n = write(sockfd, buffer, strlen(buffer));
-        if (n < 0) {
-            Error("ERROR writing to socket");
-        }
-        if (strcmp(buffer, "temp\n") == 0) {
-            //printf("hij gaat wat zeggen");
-            if (strcmp(argvv[i], "raspberrypi-0.local") == 0) {
-                //bzero(pi_temp_two_local, 256);
-                n = read(sockfd, pi_zero, 14);
-                //this->pi_temp_two_local = buffer;
+            if (server == NULL) {
+                fprintf(stderr, "ERROR, no such host\n");
+                exit(0);
             }
-            else if (strcmp(argvv[i], "raspberrypi-1.local") == 0) {
-                //bzero(pi_temp_three_local, 256);
-                n = read(sockfd, pi_one, 14);
-               // this-> = buffer;
+            bzero((char *) &serv_addr, sizeof(serv_addr));
+            serv_addr.sin_family = AF_INET;
+            bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr, server->h_length);
+            serv_addr.sin_port = htons(portno);
+            if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+                Error("ERROR connecting");
             }
-            else if (strcmp(argvv[i], "raspberrypi-2.local") == 0) {
-                //bzero(pi_temp_three_local, 256);
-                n = read(sockfd, pi_two, 14);
-                // this-> = buffer;
+
+            //printf("Please enter the message: ");
+            bzero(buffer, 256);
+            //fgets(buffer, 255, stdin);
+            buffer[tempp.size() + 1];
+            strcpy(buffer, tempp.c_str());
+            //printf("%s\n", buffer);
+            n = write(sockfd, buffer, strlen(buffer));
+            if (n < 0) {
+                Error("ERROR writing to socket");
             }
-            else if (strcmp(argvv[i], "raspberrypi-3.local") == 0) {
-                //bzero(pi_temp_three_local, 256);
-                n = read(sockfd, pi_three, 14);
-                // this-> = buffer;
-            }
-            else if (strcmp(argvv[i], "raspberrypi-g.local") == 0) {
-                printf("so far so good");
-            }
-            else {
+            if (strcmp(buffer, "temp\n") == 0) {
+                //printf("hij gaat wat zeggen");
+                if (strcmp(argvv[i], "raspberrypi-0.local") == 0) {
+                    //bzero(pi_temp_two_local, 256);
+                    n = read(sockfd, pi_zero, 14);
+                    //this->pi_temp_two_local = buffer;
+                } else if (strcmp(argvv[i], "raspberrypi-1.local") == 0) {
+                    //bzero(pi_temp_three_local, 256);
+                    n = read(sockfd, pi_one, 14);
+                    // this-> = buffer;
+                } else if (strcmp(argvv[i], "raspberrypi-2.local") == 0) {
+                    //bzero(pi_temp_three_local, 256);
+                    n = read(sockfd, pi_two, 14);
+                    // this-> = buffer;
+                } else if (strcmp(argvv[i], "raspberrypi-3.local") == 0) {
+                    //bzero(pi_temp_three_local, 256);
+                    n = read(sockfd, pi_three, 14);
+                    // this-> = buffer;
+                } else if (strcmp(argvv[i], "raspberrypi-g.local") == 0) {
+                    printf("so far so good");
+                } else {
+                    bzero(buffer, 256);
+                    n = read(sockfd, buffer, 255);
+                }
+                // next = true;
+            } else if (strcmp(buffer, "stop\n") == 0) {
+                printf("hij gaat stoppen");
+                bzero(buffer, 256);
+                n = read(sockfd, buffer, 255);
+                stop = true;
+            } else {
                 bzero(buffer, 256);
                 n = read(sockfd, buffer, 255);
             }
-                // next = true;
-        } else if (strcmp(buffer, "stop\n") == 0) {
-            printf("hij gaat stoppen");
-            bzero(buffer, 256);
-            n = read(sockfd, buffer, 255);
-            stop = true;
-        } else {
-            bzero(buffer, 256);
-            n = read(sockfd, buffer, 255);
+            if (n < 0) {
+                Error("ERROR reading from socket");
+            }
+
+            //printf("pi-3: %s , pi-2: %s\n", pi_three, pi_two);
+
+            //usleep(500000);
+
+            close(sockfd);
         }
-        if (n < 0) {
-            Error("ERROR reading from socket");
+        else{
+            thermal = fopen("/sys/class/thermal/thermal_zone0/temp","r");
+            x = fscanf(thermal,"%f",&millideg);
+            fclose(thermal);
+            systemp = millideg / 1000;
+            snprintf(pi_g, sizeof pi_g, "%f", systemp);
         }
-
-        //printf("pi-3: %s , pi-2: %s\n", pi_three, pi_two);
-
-        //usleep(500000);
-
-        close(sockfd);
     }
 }

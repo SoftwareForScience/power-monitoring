@@ -46,7 +46,17 @@ private:
 
     FILE *hostname;
 
+    float systemp, millideg;
+    FILE *thermal;
+    int x;
+
     char templogs[sizeof(pies)][DEGREE];
+
+    char pi_zero[DEGREE];
+    char pi_one[DEGREE];
+    char pi_two[DEGREE];
+    char pi_three[DEGREE];
+    char pi_g[DEGREE];
 
     string localhost;
     string host;
