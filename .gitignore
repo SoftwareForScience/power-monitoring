@@ -7,3 +7,5 @@
 *.b#5
 ina260/pcb/INA260_SFS.b#6
 *.b#7
+.DS_Store
+.gitignore
