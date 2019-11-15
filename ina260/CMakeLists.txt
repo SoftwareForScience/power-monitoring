@@ -12,4 +12,4 @@ file (GLOB SOURCE_FILES
 		"lib/ina219-linux-lib/ina219.h"
 )
 
-add_executable(ina260 ${SOURCE_FILES})
+add_executable(ina260 ${SOURCE_FILES} src/.idea/test.cpp src/test.cpp)

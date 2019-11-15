@@ -23,6 +23,9 @@ public:
     bool Stop();
     void Connect(int argcc, char *argvv[]);
 private:
+    float systemp, millideg;
+    FILE *thermal;
+    int x;
     int sockfd, newsockfd, portno;
     socklen_t clilen;
     char buffer[256];

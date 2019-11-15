@@ -1,5 +1,7 @@
 #include "server.hpp"
 
+//g++ -o server2 mainserver.cpp server.cpp
+
 int main(int argc, char *argv[]) {
     Server serv;
     serv.Connect(argc, argv);

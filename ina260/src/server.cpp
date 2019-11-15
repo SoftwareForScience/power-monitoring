@@ -78,7 +78,7 @@ void Server::Command() {
             Error("ERROR on accept");
         }
 
-        printf("server: got connection from %s port %d\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
+        //printf("server: got connection from %s port %d\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 
         bzero(buffer, sizeof(buffer));
 
@@ -87,33 +87,20 @@ void Server::Command() {
         if (n < 0) {
             Error("ERROR reading from socket");
         }
-        if (strcmp(buffer, "yo\n") == 0) {
-            printf("Yo Stefan\n");
-            send(newsockfd, "Yo, Stefan\n", 13, 0);
-        }
-        if (strcmp(buffer, "hallo\n") == 0) {
-            printf("Hallo Bram\n");
-            send(newsockfd, "Hallo, Bram\n", 13, 0);
-        }
         if (strcmp(buffer, "stop\n") == 0) {
             stop = true;
         }
-        if (strcmp(buffer, "temp\n") == 0) {
-            float systemp, millideg;
-            FILE *thermal;
-            int n;
-
+        else if (strcmp(buffer, "temp\n") == 0) {
             thermal = fopen("/sys/class/thermal/thermal_zone0/temp","r");
-            n = fscanf(thermal,"%f",&millideg);
+            x = fscanf(thermal,"%f",&millideg);
             fclose(thermal);
             systemp = millideg / 1000;
             temp = to_string(systemp);
             send(newsockfd, temp.c_str(), 13, 0);
-
         }
         else {
             send(newsockfd, "stuur is wat", 13, 0);
-            printf("Here is the message: %s\n", buffer);
+            //printf("Here is the message: %s\n", buffer);
         }
     // This send() function sends the 13 bytes of the string to the new socket
 
