@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/main.cpp
+iostream
+-
+stdio.h
+-
+fftw3.h
+/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/fftw3.h
+math.h
+-
+

@@ -1,4 +1,0 @@
-/home/bram/clion-2019.2.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFT
--- Configuring done
--- Generating done
--- Build files have been written to: /home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFT/cmake-build-debug
