@@ -62,12 +62,6 @@ void Client::Command(int argcc, char *argvv[]) {
         exit(0);
     }
 
-    memset(pi_zero, 0, 15);
-    memset(pi_one, 0, 15);
-    memset(pi_two, 0, 15);
-    memset(pi_three, 0, 15);
-    memset(pi_g, 0, 15);
-
     pies = atoi(argvv[1]);
     printf("%d", pies);
     for (int i = 3; i < (pies + 3); i++) {
@@ -104,7 +98,11 @@ void Client::Command(int argcc, char *argvv[]) {
             if (n < 0) {
                 Error("ERROR writing to socket");
             }
-            if (strcmp(buffer, "temp\n") == 0) {
+            bzero(buffer, DEGREE);
+            n = read(sockfd, buffer, (DEGREE -1));
+            strncpy(templogs[(i-3)], buffer, DEGREE);
+
+            /*if (strcmp(buffer, "temp\n") == 0) {
                 //printf("hij gaat wat zeggen");
                 if (strcmp(argvv[i], "raspberrypi-0.local") == 0) {
                     //bzero(pi_temp_two_local, 256);
@@ -137,7 +135,7 @@ void Client::Command(int argcc, char *argvv[]) {
             } else {
                 bzero(buffer, 256);
                 n = read(sockfd, buffer, 255);
-            }
+            }*/
             if (n < 0) {
                 Error("ERROR reading from socket");
             }
@@ -153,7 +151,33 @@ void Client::Command(int argcc, char *argvv[]) {
             x = fscanf(thermal,"%f",&millideg);
             fclose(thermal);
             systemp = millideg / 1000;
-            snprintf(pi_g, sizeof pi_g, "%f", systemp);
+            sprintf(templogs[i-3], "%f", systemp);
         }
     }
+    for(int i = 0; i < pies; i++) {
+        printf("%s: %s\n", argvv[(i+3)], templogs[i]);
+       // temps.insert(argvv[(i + 3)], templogs[i] );
+
+        this->m[argvv[(i + 3)]] = templogs[i];
+
+        //p = std::make_pair(std::string(argvv[(i + 3)]), std::string(templogs[i]));
+        //m.insert(p);
+    }
+
+    map<string, pair<string,string> >::const_iterator it;
+    for( auto &it : this-> m)
+    {
+        std::cout << it.first << " " << it.second << "\n";
+    }
+/*
+    std::vector<std::pair<std::string, std::string> > values;
+
+    for(int i = 0; i < pies; i++) {
+        std::pair<std::string, std::string> p =
+                std::make_pair(std::string(argvv[(i + 3)]), std::string(templogs[i]));
+        values.push_back(p);
+    }
+
+    std::map<std::string, std::string> m(values.begin(), values.end());
+*/
 }

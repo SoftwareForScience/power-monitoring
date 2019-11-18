@@ -14,8 +14,9 @@
 #include <cstring>
 #include <iterator>
 #include <map>
+#include <vector>
 
-#define DEGREE 15
+#define DEGREE 9
 
 using namespace std;
 
@@ -58,11 +59,17 @@ private:
     char pi_three[DEGREE];
     char pi_g[DEGREE];
 
+    std::map<std::string, std::string> m;
+    std::pair<std::string, std::string> p;
+
+
+    //map<char [], char []> temps;
+
     string localhost;
     string host;
     string local = ".local";
     string tempp = "temp\n";
-    char buffer[];
+    char buffer[DEGREE];
 };
 
 #endif //CLIENT_HPP

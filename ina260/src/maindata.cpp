@@ -12,11 +12,11 @@ int main (int argc, char *argv[]) {
         client.Stop();
         client.Command(argc, argv);
         client.Connect();
-        printf("pi-0: %s , pi-1: %s pi-2: %s , pi-3: %s pi-g: %s\n",
+        /*printf("pi-0: %s , pi-1: %s pi-2: %s , pi-3: %s pi-g: %s\n",
                 client.pi_temp_zero, client.pi_temp_one,
                client.pi_temp_two, client.pi_temp_three,
                client.pi_temp_g);
-
+*/
         /*temperaturemap = client.Connect(argv);
         map<char *, char *>::iterator itr;
 
