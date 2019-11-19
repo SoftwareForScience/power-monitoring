@@ -17,6 +17,5 @@ int main()
 
 	logger_.stopMea();
 
-
 	return 0;
 }
