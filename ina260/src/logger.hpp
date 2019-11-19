@@ -10,24 +10,37 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <thread>
+#include <utility>
+#include <zconf.h>
+#include <chrono>
 #include "inaDevice.hpp"
 #include "../lib/pugixml/src/pugixml.hpp"
+#include "../lib/date/include/date/date.h"
+
+namespace fs = std::filesystem;
 
 class logger
 {
 public:
 	explicit logger(std::filesystem::path outputDir);
 	void loadFile(std::filesystem::path piXML);
+	void startMea();
+	void stopMea();
 private:
-	class inaContainer
+	struct inaContainer
 	{
-	public:
 		inaDevice *ina;
-		std::string name;
 		std::ofstream file;
 	};
 
-	std::map<std::string, inaContainer> inas;
+	void run();
+
+	bool stop = false;
+	std::thread* thread;
+
+	fs::path outDir, runDir;
+	std::map<std::string, inaContainer> nodes;
 };
 
 

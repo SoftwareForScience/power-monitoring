@@ -1,7 +1,3 @@
-//
-// Created by Stefan Schokker on 2019-11-13.
-//
-
 #ifndef INA260_I2CDEVICE_HPP
 #define INA260_I2CDEVICE_HPP
 

@@ -19,13 +19,13 @@ inaDevice::inaDevice(int id) : I2CDevice(id)
 double inaDevice::getShuntCurrent()
 {
 	uint16_t res = inaDevice::invert(this->readReg16(INA260_REG_SHUNTCURRENT));
-	return res * 0.00125;   // INA has 1.25 mV steps
+	return (double)res * 0.00125;   // INA has 1.25 mV steps
 }
 
 double inaDevice::getBusVoltage()
 {
 	uint16_t res = inaDevice::invert(this->readReg16(INA260_REG_BUSVOLTAGE));
-	return res * 0.00125;   // INA has 1.25 mV steps
+	return (double)res * 0.00125;   // INA has 1.25 mV steps
 }
 
 double inaDevice::getPower()

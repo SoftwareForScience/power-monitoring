@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ina260"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/stefanschokker/Documents/school/SFS/power/ina260"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/stefanschokker/Documents/school/SFS/power/ina260"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/stefanschokker/Documents/school/SFS/power/ina260"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ina260">
+				<Option output="/Users/stefanschokker/Documents/school/SFS/power/ina260/ina260" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/stefanschokker/Documents/school/SFS/power/ina260"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0/x86_64-apple-darwin18"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0/backward"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/include"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/include-fixed"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 ina260"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ina260/fast">
+				<Option output="/Users/stefanschokker/Documents/school/SFS/power/ina260/ina260" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/stefanschokker/Documents/school/SFS/power/ina260"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0/x86_64-apple-darwin18"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/../../../../../../include/c++/8.3.0/backward"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/include"/>
+					<Add directory="/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/gcc/x86_64-apple-darwin18/8.3.0/include-fixed"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 ina260/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j8 -f &quot;/Users/stefanschokker/Documents/school/SFS/power/ina260/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/date/include/date">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/date/src/ios.mm">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/date/src/tz.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/pugixml/src/pugiconfig.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/pugixml/src/pugixml.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/lib/pugixml/src/pugixml.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/I2CDevice.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/I2CDevice.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/INASettings.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/inaDevice.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/inaDevice.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/logger.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/logger.hpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/src/main.cpp">
+			<Option target="ina260"/>
+		</Unit>
+		<Unit filename="/Users/stefanschokker/Documents/school/SFS/power/ina260/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
