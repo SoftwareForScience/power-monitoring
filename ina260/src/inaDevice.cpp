@@ -1,25 +1,38 @@
+#include <iostream>
 #include "inaDevice.hpp"
 
-ina_device::ina_device(unsigned devID) {
-	this->dev = ina_219_device_open(this->i2cpath, devID);
+inaDevice::inaDevice(int id) : I2CDevice(id)
+{
+	I2CDevice::init();
 
-	if (!this->dev) {   
-		throw std::invalid_argument("Invalid i2c device");  
-	}
+	// Defines from INASettings.hpp
+	uint16_t config = INA260_CONFIG_AVGRANGE_128 |
+	                  INA260_CONFIG_BVOLTAGETIME_140US |
+	                  INA260_CONFIG_SCURRENTTIME_140US |
+	                  INA260_CONFIG_MODE_SANDBVOLT_CONTINUOUS;
 
-	badc = INA_219_DEVICE_BADC_12_BIT_128_AVERAGE;
-	sadc = INA_219_DEVICE_SADC_12_BIT_128_AVERAGE;
+	config = (config << 8 | config >> 8) & 0xFFFF;
 
-	ina_219_device_config(this->dev, INA_219_DEVICE_BUS_VOLTAGE_RANGE_32 |
-	                           INA_219_DEVICE_GAIN_8 |
-	                           INA_219_DEVICE_MODE_SHUNT |
-	                           INA_219_DEVICE_MODE_BUS |
-	                           badc | sadc);
-
-	ina_219_device_calibrate(this->dev, 0.1, 1.0);
+	this->writeReg16(INA260_REG_CONFIG, config);
 }
 
-ina_device::~ina_device() {   
-	ina_219_device_close(this->dev);    
+double inaDevice::getShuntCurrent()
+{
+	uint16_t res = inaDevice::invert(this->readReg16(INA260_REG_SHUNTCURRENT));
+	return (double)res * 0.00125;   // INA has 1.25 mV steps
 }
 
+double inaDevice::getBusVoltage()
+{
+	uint16_t res = inaDevice::invert(this->readReg16(INA260_REG_BUSVOLTAGE));
+	return (double)res * 0.00125;   // INA has 1.25 mV steps
+}
+
+double inaDevice::getPower()
+{
+	uint16_t res = inaDevice::invert(this->readReg16(INA260_REG_POWER));
+	return (double)res / 100;  // Convert to Watts
+}
+
+uint16_t inaDevice::invert(uint16_t a)
+{   return (a << 8 | a >> 8) & 0xFFFF;  }

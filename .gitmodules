@@ -1,3 +1,12 @@
 [submodule "ina260/ina260/lib/ina219-linux-lib"]
 	path = ina260/ina260/lib/ina219-linux-lib
 	url = https://github.com/rudimiv/ina219-linux-lib.git
+[submodule "ina260/lib/tinyxml2"]
+	path = ina260/lib/tinyxml2
+	url = git@github.com:leethomason/tinyxml2.git
+[submodule "ina260/lib/pugixml"]
+	path = ina260/lib/pugixml
+	url = git@github.com:zeux/pugixml.git
+[submodule "ina260/lib/date"]
+	path = ina260/lib/date
+	url = git@github.com:HowardHinnant/date.git

@@ -7,6 +7,10 @@
 *.b#5
 ina260/pcb/INA260_SFS.b#6
 *.b#7
+<<<<<<< .gitignore
+=======
+<<<<<<< .gitignore
+>>>>>>> .gitignore
 ina260/cmake-build-debug/cmake_install.cmake
 ina260/cmake-build-debug/CMakeCache.txt
 ina260/cmake-build-debug/ina260.cbp
@@ -41,3 +45,10 @@ ina260/src/.idea/modules.xml
 ina260/src/.idea/src.iml
 ina260/src/.idea/vcs.xml
 ina260/src/.idea/webServers.xml
+<<<<<<< .gitignore
+=======
+=======
+.DS_Store
+.gitignore
+>>>>>>> .gitignore
+>>>>>>> .gitignore
