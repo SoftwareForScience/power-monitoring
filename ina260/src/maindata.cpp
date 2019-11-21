@@ -5,30 +5,14 @@
 int main (int argc, char *argv[]) {
     Client client;
     client.Init();
-    //map<char *, char *> temperaturemap;
 
-    while(!client.Stop()){
+    while (1) {
         usleep(1000000);
-        client.Stop();
-        client.Command(argc, argv);
-        client.Connect();
-        /*printf("pi-0: %s , pi-1: %s pi-2: %s , pi-3: %s pi-g: %s\n",
-                client.pi_temp_zero, client.pi_temp_one,
-               client.pi_temp_two, client.pi_temp_three,
-               client.pi_temp_g);
-*/
-        /*temperaturemap = client.Connect(argv);
-        map<char *, char *>::iterator itr;
-
-        for (itr = temperaturemap.begin(); itr != temperaturemap.end(); ++itr) {
-            cout << '\t' << itr->first
-                 << '\t' << itr->second << '\n';
+        client.Call(argc, argv);
+        map<string, pair<string, string> >::const_iterator it;
+        for (auto &it : client.Mapping(argv)) {
+            std::cout << it.first << " " << it.second << "\n";
         }
-        cout << endl;*/
-        //client.next = false;
-        //client.Command(argc, pi);
-        //client.next = false;
     }
-
     return 0;
 }
