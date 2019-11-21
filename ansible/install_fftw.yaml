@@ -1,0 +1,41 @@
+# IMPORTANT!!! the pi's must have access to the internet 
+#              to be able to install dependencies 
+# install this on all the pi's except the data collection pi 
+---
+- name: Install FFT dependencies 
+  hosts: sfs
+  tasks:
+    - name: Create target directory
+      file: path=FFT/src state=directory 
+
+    - name: get fftw-3.3.8.tar.gz
+      copy:
+        src: src/fftw-3.3.8.tar.gz
+        dest: FFT/src
+       
+    - name: Unarchive fftw-3.3.8
+      command: tar -C FFT/src -xvf FFT/src/fftw-3.3.8.tar.gz 
+      become: true
+
+    - name: get mpi dependencies
+      command: apt install mpich --fix-missing
+      become: true 
+
+    - name: configure fftw
+      command: ./configure --enable-openmp --enable-mpi --enable-threads
+      args:
+          chdir: FFT/src/fftw-3.3.8 
+      become: true
+
+    - name: make fftw
+      command: make
+      args:
+          chdir: FFT/src/fftw-3.3.8 
+      become: true
+
+    - name: make install fftw
+      command: make install
+      args:
+          chdir: FFT/src/fftw-3.3.8 
+      become: true
+
