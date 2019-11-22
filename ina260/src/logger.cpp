@@ -7,7 +7,7 @@
 namespace fs = std::filesystem;
 namespace ch = std::chrono;
 
-logger::logger(fs::path outputDir)
+logger::logger(fs::path outputDir, const fs::path& config)
 {
 	if (!fs::exists(outputDir))
 	{
@@ -15,24 +15,32 @@ logger::logger(fs::path outputDir)
 		fs::create_directory(outputDir);
 	}
 
+	this->loadConfig(config);
+
+	// Get hostnames and start temperature client
+//	std::vector<std::string> hostnames;
+//	for (auto &node : this->nodes)
+//	{   hostnames.emplace_back(node.name);    }
+
+//	this->client_ = Client(hostnames);
 	this->outDir = std::move(outputDir);
 }
 
 void logger::startMea()
 {
 	this->runDir = this->outDir.string() + "/" +
-			date::format("%F %T", date::floor<ch::milliseconds>(ch::system_clock::now())) +
-			"/";
+			date::format("%F %T", date::floor<ch::milliseconds>(ch::system_clock::now())) + "/";
 
 	if (!fs::exists(this->runDir))
 	{   fs::create_directory(this->runDir);   }
 
+	// Initialise CSV files for all pi's, and save their names to a separate vector for the client later on
 	for (auto &node : this->nodes)
 	{
-		fs::path outFile = this->runDir.string() + node.first + ".csv";
+		fs::path outFile = this->runDir.string() + node.name + ".csv";
 		std::cout << "outfile: " << outFile.string() << std::endl;
-		node.second.file = std::ofstream(outFile);
-		node.second.file << "date, name, amps, volts, watts, dcelcius\n";
+		node.file = std::ofstream(outFile);
+		node.file << "date, time, name, amps, volts, watts\n";
 	}
 
 	// Start thread and return to main thread
@@ -49,8 +57,8 @@ void logger::stopMea()
 
 	for (auto &node : this->nodes)
 	{
-		if (node.second.file.is_open())
-		{   node.second.file.close();   }
+		if (node.file.is_open())
+		{   node.file.close();   }
 	}
 }
 
@@ -59,30 +67,30 @@ void logger::run()
 	while (!this->stop)
 	{
 		auto now = ch::high_resolution_clock::now();
-		std::string ftime = date::format("%F %T", date::floor<ch::milliseconds>(ch::system_clock::now()));
+		std::string ftime = date::format("%F, %T", date::floor<ch::milliseconds>(ch::system_clock::now()));
 
 		// Get and write measurements to file
 		for (auto& node : this->nodes)
 		{
+			std::cout << node.name << "writing\n";
 			// CSV string formatting
 			std::string entry = ftime +                                         //  Date
-					", " + node.first +                                         //  name
-					", " + std::to_string(node.second.ina->getShuntCurrent()) + //  amps
-					", " + std::to_string(node.second.ina->getBusVoltage()) +   //  volts
-					", " + std::to_string(node.second.ina->getPower()) +        //  power
-					", Temperature not available\n";                            //  dcelcius
-			node.second.file << entry;
+					", " + node.name +                                          //  name
+					", " + std::to_string(node.ina->getShuntCurrent()) +        //  amps
+					", " + std::to_string(node.ina->getBusVoltage()) +          //  volts
+					", " + std::to_string(node.ina->getPower());                //  power
+			node.file << entry;
 		}
 
 		// Make this into a more or less periodical task
 		auto later = ch::high_resolution_clock::now();
 		ch::duration<double> time_span = ch::duration_cast<ch::microseconds>(later - now);
 
-		usleep(50000 - time_span.count());
+		usleep(500000/* - time_span.count()*/);
 	}
 }
 
-void logger::loadFile(fs::path piXML)
+void logger::loadConfig(fs::path piXML)
 {
 	if (!fs::exists(piXML))
 	{   throw std::runtime_error("File [" + piXML.string() + "] does not exist");   }
@@ -106,7 +114,10 @@ void logger::loadFile(fs::path piXML)
 		pugi::xml_node i2c = pi.select_node(i2c_query).node();
 
 		// Prepare and insert new pi + ina combination into map for later use
-		this->nodes[name.value()] = inaContainer
-		{   .ina = new inaDevice(std::stoi(i2c.value(), nullptr, 16))  };
+		this->nodes.emplace_back(inaContainer
+		{
+			.name = name.value(),
+			.ina = new inaDevice(std::stoi(i2c.value(), nullptr, 16))
+		});
 	}
 }

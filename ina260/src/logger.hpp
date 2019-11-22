@@ -7,14 +7,15 @@
 
 #include <map>
 #include <string>
-#include <filesystem>
 #include <fstream>
+#include <filesystem>
 #include <iostream>
 #include <thread>
 #include <utility>
 #include <zconf.h>
 #include <chrono>
 #include "inaDevice.hpp"
+#include "client.hpp"
 #include "../lib/pugixml/src/pugixml.hpp"
 #include "../lib/date/include/date/date.h"
 
@@ -23,24 +24,27 @@ namespace fs = std::filesystem;
 class logger
 {
 public:
-	explicit logger(std::filesystem::path outputDir);
-	void loadFile(std::filesystem::path piXML);
+	explicit logger(fs::path outputDir, const fs::path& config);
+
 	void startMea();
 	void stopMea();
 private:
 	struct inaContainer
 	{
+		std::string name;
 		inaDevice *ina;
 		std::ofstream file;
 	};
 
 	void run();
+	void loadConfig(fs::path piXML);
 
 	bool stop = false;
 	std::thread* thread;
+	Client client_ = Client(std::vector<std::string>());
 
 	fs::path outDir, runDir;
-	std::map<std::string, inaContainer> nodes;
+	std::vector<inaContainer> nodes;
 };
 
 
