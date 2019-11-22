@@ -1,19 +1,21 @@
 #ifndef INA260_INADEVICE_HPP
 #define INA260_INADEVICE_HPP
 
-#include <stdexcept>
+#include "I2CDevice.hpp"
+#include "INASettings.hpp"
+#include <cstdint>
 
-#include "../lib/ina219-linux-lib/ina219.h"
-
-class ina_device
+class inaDevice : I2CDevice
 {
 public:
-	explicit ina_device(unsigned devID);
-	~ina_device();
+	explicit inaDevice(int id);
+
+	double getShuntCurrent();
+	double getBusVoltage();
+	double getPower();
 
 private:
-	std::string i2cpath = "/dev/i2c-1";
-	ina_219_device *dev;
+	static uint16_t invert(uint16_t a);
 };
 
 
