@@ -17,12 +17,6 @@ logger::logger(fs::path outputDir, const fs::path& config)
 
 	this->loadConfig(config);
 
-	// Get hostnames and start temperature client
-//	std::vector<std::string> hostnames;
-//	for (auto &node : this->nodes)
-//	{   hostnames.emplace_back(node.name);    }
-
-//	this->client_ = Client(hostnames);
 	this->outDir = std::move(outputDir);
 }
 
@@ -34,14 +28,24 @@ void logger::startMea()
 	if (!fs::exists(this->runDir))
 	{   fs::create_directory(this->runDir);   }
 
-	// Initialise CSV files for all pi's, and save their names to a separate vector for the client later on
+	// Get hostnames and start temperature client
+	std::vector<std::string> hostnames;
+	for (auto &node : this->nodes)
+	{   hostnames.emplace_back(node.name);    }
+
+	this->tlog = temperatureLogger(this->runDir, hostnames);
+
+	// Initialise CSV files for all pi's
 	for (auto &node : this->nodes)
 	{
 		fs::path outFile = this->runDir.string() + node.name + ".csv";
 		std::cout << "outfile: " << outFile.string() << std::endl;
 		node.file = std::ofstream(outFile);
 		node.file << "date, time, name, amps, volts, watts\n";
+		node.file.flush();
 	}
+
+	this->tlog.startLog();
 
 	// Start thread and return to main thread
 	this->thread = new std::thread(&logger::run, this);
@@ -54,6 +58,8 @@ void logger::stopMea()
 	this->stop = true;
 	if (this->thread->joinable())
 	{   this->thread->join();   }
+
+	this->tlog.stopLog();
 
 	for (auto &node : this->nodes)
 	{
@@ -72,13 +78,12 @@ void logger::run()
 		// Get and write measurements to file
 		for (auto& node : this->nodes)
 		{
-			std::cout << node.name << "writing\n";
 			// CSV string formatting
 			std::string entry = ftime +                                         //  Date
 					", " + node.name +                                          //  name
 					", " + std::to_string(node.ina->getShuntCurrent()) +        //  amps
 					", " + std::to_string(node.ina->getBusVoltage()) +          //  volts
-					", " + std::to_string(node.ina->getPower());                //  power
+					", " + std::to_string(node.ina->getPower()) + "\n";         //  power
 			node.file << entry;
 		}
 
@@ -114,7 +119,7 @@ void logger::loadConfig(fs::path piXML)
 		pugi::xml_node i2c = pi.select_node(i2c_query).node();
 
 		// Prepare and insert new pi + ina combination into map for later use
-		this->nodes.emplace_back(inaContainer
+		this->nodes.emplace_back(piContainer
 		{
 			.name = name.value(),
 			.ina = new inaDevice(std::stoi(i2c.value(), nullptr, 16))

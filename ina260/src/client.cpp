@@ -2,7 +2,7 @@
 #include <fstream>
 #include "client.hpp"
 
-Client::Client(std::vector<std::string> hostnames)
+Client::Client(const std::vector<std::string> hostnames)
 {
 	this->pies = hostnames.size();
 	this->hostnames = hostnames;
@@ -24,54 +24,49 @@ std::map<std::string, std::string> Client::Call()
 {
     for (auto &a : this->hostnames)
     {
-        std::cout << "Call " << a << std::endl;
+	    this->portno = PORT;
+	    this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-	    portno = PORT;
-	    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
-	    if (sockfd < 0)
+	    if (this->sockfd < 0)
 	    {   Error("ERROR opening socket");  }
 
-	    const char* chost = a.c_str();
 	    if (this->localhost != a)
 	    {
-		    server = gethostbyname(chost);
-		    printf("%s\n", chost);
+		    this->server = gethostbyname(a.c_str());
 
-		    if (server == nullptr)
+		    if (this->server == nullptr)
 		    {
 			    fprintf(stderr, "ERROR, no such host\n");
 			    exit(0);
 		    }
-		    bzero((char *) &serv_addr, sizeof(serv_addr));
-		    serv_addr.sin_family = AF_INET;
-		    bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr, server->h_length);
-		    serv_addr.sin_port = htons(portno);
+		    bzero((char *) &this->serv_addr, sizeof(this->serv_addr));
+		    this->serv_addr.sin_family = AF_INET;
+		    bcopy((char *) this->server->h_addr, (char *) &this->serv_addr.sin_addr.s_addr,
+		    		this->server->h_length);
+		    this->serv_addr.sin_port = htons(this->portno);
 
-		    if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+		    if (connect(this->sockfd, (struct sockaddr *) &this->serv_addr,
+		    		sizeof(this->serv_addr)) < 0)
 		    {   Error("ERROR connecting");  }
 
-		    bzero(buffer, 256);
-		    buffer[this->pies + 1];
-		    strcpy(buffer, tempp.c_str());
+		    bzero(this->buffer, DEGREE);
+		    strcpy(this->buffer, this->tempp.c_str());
 
-		    n = write(sockfd, buffer, strlen(buffer));
+		    this->n = write(this->sockfd, this->buffer, strlen(this->buffer));
 
 		    if (n < 0)
 		    {   Error("ERROR writing to socket");   }
 
-		    bzero(buffer, DEGREE);
-		    n = read(sockfd, buffer, (DEGREE - 1));
-		    this->m[a] = std::string(buffer);
+		    bzero(this->buffer, DEGREE);
+		    this->n = read(this->sockfd, this->buffer, (DEGREE - 1));
+		    this->m[a] = std::string(this->buffer);
 
-		    if (n < 0)
+		    if (this->n < 0)
 		    {   Error("ERROR reading from socket"); }
 
-		    close(sockfd);
+		    close(this->sockfd);
 	    } else
 	    {
-	        std::cout << "getting local temperature" << std::endl;
-
 	        std::ifstream file("/sys/class/thermal/thermal_zone0/temp");
 			int rawtemp;
 			file >> rawtemp;

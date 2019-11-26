@@ -15,7 +15,7 @@
 #include <zconf.h>
 #include <chrono>
 #include "inaDevice.hpp"
-#include "client.hpp"
+#include "temperatureLogger.hpp"
 #include "../lib/pugixml/src/pugixml.hpp"
 #include "../lib/date/include/date/date.h"
 
@@ -29,7 +29,7 @@ public:
 	void startMea();
 	void stopMea();
 private:
-	struct inaContainer
+	struct piContainer
 	{
 		std::string name;
 		inaDevice *ina;
@@ -41,10 +41,10 @@ private:
 
 	bool stop = false;
 	std::thread* thread;
-	Client client_ = Client(std::vector<std::string>());
+	temperatureLogger tlog = temperatureLogger("", std::vector<std::string>());
 
 	fs::path outDir, runDir;
-	std::vector<inaContainer> nodes;
+	std::vector<piContainer> nodes;
 };
 
 
