@@ -11,7 +11,7 @@ int main()
 
 	logger_.startMea();
 
-	sleep(20);
+	getchar();
 
 	logger_.stopMea();
 

@@ -13,7 +13,6 @@ public:
 	double getShuntCurrent();
 	double getBusVoltage();
 	double getPower();
-
 private:
 	static uint16_t invert(uint16_t a);
 };
