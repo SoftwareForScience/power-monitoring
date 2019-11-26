@@ -61,7 +61,7 @@ void Server::Command() {
     // The listen() function places all incoming connection into a backlog queue
     // until accept() call accepts the connection.
     // Here, we set the maximum size for the backlog queue to 5.
-    listen(sockfd,5);
+    listen(sockfd,10);
 
     // The accept() call actually accepts an incoming connection
 
@@ -78,8 +78,8 @@ void Server::Command() {
             Error("ERROR on accept");
         }
 
-        //printf("server: got connection from %s port %d\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
-
+        printf("server: got connection from %s port %d\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
+        printf("%d\n", newsockfd);
         bzero(buffer, sizeof(buffer));
 
         n = read(newsockfd, buffer, (sizeof(buffer) - 1));
