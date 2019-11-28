@@ -11,6 +11,8 @@ file (GLOB SOURCE_FILES
 		"lib/pugixml/src/*"
 #		"lib/date/src/*"
 #		"lib/date/include/date/*"
+		"lib/args/args.hxx"
+		"lib/args/catch.hpp"
 )
 
 add_executable(ina260 ${SOURCE_FILES})

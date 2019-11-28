@@ -7,7 +7,7 @@
 namespace fs = std::filesystem;
 namespace ch = std::chrono;
 
-logger::logger(fs::path outputDir, const fs::path& config)
+logger::logger(fs::path outputDir, const fs::path &config, int port)
 {
 	if (!fs::exists(outputDir))
 	{

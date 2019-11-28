@@ -24,7 +24,7 @@ namespace fs = std::filesystem;
 class logger
 {
 public:
-	explicit logger(fs::path outputDir, const fs::path& config);
+	explicit logger(fs::path outputDir, const fs::path &config, int port);
 
 	void startMea();
 	void stopMea();
