@@ -14,6 +14,8 @@ Client::Client(const std::vector<std::string> hostnames)
 
 	std::cout << "localhost: " << this->localhost << "\n";
 
+    this->portno = PORT;
+    this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
 }
 
 void Client::Error(const char *msg) {
@@ -21,35 +23,18 @@ void Client::Error(const char *msg) {
     exit(0);
 }
 
-void Client::Socketlist() {
-    for (auto &a : this->hostnames)
-    {
-
-        this->portno = PORT;
-        this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
-        this->psocket.emplace_back(sContainer
-        {
-            .hname = a.c_str(),
-            .shost = sockfd)
-        });
-    }
-}
 std::map<std::string, std::string> Client::Call()
 {
 
-    for (auto &a : this->psocket)
+    for (auto &a : this->hostnames)
     {
-
-        this->portno = PORT;
-        this->sockfd = a.shost;
 
 	    if (this->sockfd < 0)
 	    {   Error("ERROR opening socket");  }
 
 	    if (this->localhost != a)
 	    {
-		    this->server = gethostbyname(a.hname());
+		    this->server = gethostbyname(a.c_str());
 
 		    if (this->server == nullptr)
 		    {
@@ -76,12 +61,12 @@ std::map<std::string, std::string> Client::Call()
 
 		    bzero(this->buffer, DEGREE);
 		    this->n = read(this->sockfd, this->buffer, (DEGREE - 1));
-		    this->m[a.hname] = std::string(this->buffer);
+		    this->m[a] = std::string(this->buffer);
 
 		    if (this->n < 0)
 		    {   Error("ERROR reading from socket"); }
 
-		    //close(this->sockfd);
+		    close(this->sockfd);
 	    } else
 	    {
 	        std::ifstream file("/sys/class/thermal/thermal_zone0/temp");

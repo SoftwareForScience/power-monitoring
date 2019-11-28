@@ -1,5 +1,5 @@
 /* The port number is passed as an argument */
-#include "server.hpp"
+#include "src/server.hpp"
 
 void Server::Error(const char *msg) {
     perror(msg);
@@ -102,7 +102,6 @@ void Server::Command() {
             send(newsockfd, "stuur is wat", 13, 0);
             //printf("Here is the message: %s\n", buffer);
         }
-    close(newsockfd);
     // This send() function sends the 13 bytes of the string to the new socket
 
 }

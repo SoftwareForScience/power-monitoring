@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.2/bin/cmake
+CMAKE_COMMAND = /usr/local/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.15.2/bin/cmake -E remove -f
+RM = /usr/local/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/stefanschokker/Documents/school/SFS/power/ina260
+CMAKE_SOURCE_DIR = /tmp/tmp.GYQmTdo2sk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/stefanschokker/Documents/school/SFS/power/ina260
+CMAKE_BINARY_DIR = /tmp/tmp.GYQmTdo2sk
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/stefanschokker/Documents/school/SFS/power/ina260
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.15.2/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/local/Cellar/cmake/3.15.2/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/usr/local/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/stefanschokker/Documents/school/SFS/power/ina260/CMakeFiles /Users/stefanschokker/Documents/school/SFS/power/ina260/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.GYQmTdo2sk/CMakeFiles /tmp/tmp.GYQmTdo2sk/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/stefanschokker/Documents/school/SFS/power/ina260/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.GYQmTdo2sk/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,87 +123,6 @@ ina260/fast:
 	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/build
 .PHONY : ina260/fast
 
-lib/date/src/ios.o: lib/date/src/ios.mm.o
-
-.PHONY : lib/date/src/ios.o
-
-# target to build an object file
-lib/date/src/ios.mm.o:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/ios.mm.o
-.PHONY : lib/date/src/ios.mm.o
-
-lib/date/src/ios.i: lib/date/src/ios.mm.i
-
-.PHONY : lib/date/src/ios.i
-
-# target to preprocess a source file
-lib/date/src/ios.mm.i:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/ios.mm.i
-.PHONY : lib/date/src/ios.mm.i
-
-lib/date/src/ios.s: lib/date/src/ios.mm.s
-
-.PHONY : lib/date/src/ios.s
-
-# target to generate assembly for a file
-lib/date/src/ios.mm.s:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/ios.mm.s
-.PHONY : lib/date/src/ios.mm.s
-
-lib/date/src/tz.o: lib/date/src/tz.cpp.o
-
-.PHONY : lib/date/src/tz.o
-
-# target to build an object file
-lib/date/src/tz.cpp.o:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/tz.cpp.o
-.PHONY : lib/date/src/tz.cpp.o
-
-lib/date/src/tz.i: lib/date/src/tz.cpp.i
-
-.PHONY : lib/date/src/tz.i
-
-# target to preprocess a source file
-lib/date/src/tz.cpp.i:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/tz.cpp.i
-.PHONY : lib/date/src/tz.cpp.i
-
-lib/date/src/tz.s: lib/date/src/tz.cpp.s
-
-.PHONY : lib/date/src/tz.s
-
-# target to generate assembly for a file
-lib/date/src/tz.cpp.s:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/date/src/tz.cpp.s
-.PHONY : lib/date/src/tz.cpp.s
-
-lib/pugixml/src/pugixml.o: lib/pugixml/src/pugixml.cpp.o
-
-.PHONY : lib/pugixml/src/pugixml.o
-
-# target to build an object file
-lib/pugixml/src/pugixml.cpp.o:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/pugixml/src/pugixml.cpp.o
-.PHONY : lib/pugixml/src/pugixml.cpp.o
-
-lib/pugixml/src/pugixml.i: lib/pugixml/src/pugixml.cpp.i
-
-.PHONY : lib/pugixml/src/pugixml.i
-
-# target to preprocess a source file
-lib/pugixml/src/pugixml.cpp.i:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/pugixml/src/pugixml.cpp.i
-.PHONY : lib/pugixml/src/pugixml.cpp.i
-
-lib/pugixml/src/pugixml.s: lib/pugixml/src/pugixml.cpp.s
-
-.PHONY : lib/pugixml/src/pugixml.s
-
-# target to generate assembly for a file
-lib/pugixml/src/pugixml.cpp.s:
-	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/lib/pugixml/src/pugixml.cpp.s
-.PHONY : lib/pugixml/src/pugixml.cpp.s
-
 src/I2CDevice.o: src/I2CDevice.cpp.o
 
 .PHONY : src/I2CDevice.o
@@ -230,6 +149,33 @@ src/I2CDevice.s: src/I2CDevice.cpp.s
 src/I2CDevice.cpp.s:
 	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/I2CDevice.cpp.s
 .PHONY : src/I2CDevice.cpp.s
+
+src/client.o: src/client.cpp.o
+
+.PHONY : src/client.o
+
+# target to build an object file
+src/client.cpp.o:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
+
+src/client.i: src/client.cpp.i
+
+.PHONY : src/client.i
+
+# target to preprocess a source file
+src/client.cpp.i:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
+
+src/client.s: src/client.cpp.s
+
+.PHONY : src/client.s
+
+# target to generate assembly for a file
+src/client.cpp.s:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
 
 src/inaDevice.o: src/inaDevice.cpp.o
 
@@ -312,6 +258,87 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/maindata.o: src/maindata.cpp.o
+
+.PHONY : src/maindata.o
+
+# target to build an object file
+src/maindata.cpp.o:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/maindata.cpp.o
+.PHONY : src/maindata.cpp.o
+
+src/maindata.i: src/maindata.cpp.i
+
+.PHONY : src/maindata.i
+
+# target to preprocess a source file
+src/maindata.cpp.i:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/maindata.cpp.i
+.PHONY : src/maindata.cpp.i
+
+src/maindata.s: src/maindata.cpp.s
+
+.PHONY : src/maindata.s
+
+# target to generate assembly for a file
+src/maindata.cpp.s:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/maindata.cpp.s
+.PHONY : src/maindata.cpp.s
+
+src/server.o: src/server.cpp.o
+
+.PHONY : src/server.o
+
+# target to build an object file
+src/server.cpp.o:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/server.cpp.o
+.PHONY : src/server.cpp.o
+
+src/server.i: src/server.cpp.i
+
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.cpp.i:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/server.cpp.i
+.PHONY : src/server.cpp.i
+
+src/server.s: src/server.cpp.s
+
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.cpp.s:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/server.cpp.s
+.PHONY : src/server.cpp.s
+
+src/temperatureLogger.o: src/temperatureLogger.cpp.o
+
+.PHONY : src/temperatureLogger.o
+
+# target to build an object file
+src/temperatureLogger.cpp.o:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/temperatureLogger.cpp.o
+.PHONY : src/temperatureLogger.cpp.o
+
+src/temperatureLogger.i: src/temperatureLogger.cpp.i
+
+.PHONY : src/temperatureLogger.i
+
+# target to preprocess a source file
+src/temperatureLogger.cpp.i:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/temperatureLogger.cpp.i
+.PHONY : src/temperatureLogger.cpp.i
+
+src/temperatureLogger.s: src/temperatureLogger.cpp.s
+
+.PHONY : src/temperatureLogger.s
+
+# target to generate assembly for a file
+src/temperatureLogger.cpp.s:
+	$(MAKE) -f CMakeFiles/ina260.dir/build.make CMakeFiles/ina260.dir/src/temperatureLogger.cpp.s
+.PHONY : src/temperatureLogger.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -319,20 +346,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... ina260"
-	@echo "... lib/date/src/ios.o"
-	@echo "... lib/date/src/ios.i"
-	@echo "... lib/date/src/ios.s"
-	@echo "... lib/date/src/tz.o"
-	@echo "... lib/date/src/tz.i"
-	@echo "... lib/date/src/tz.s"
-	@echo "... lib/pugixml/src/pugixml.o"
-	@echo "... lib/pugixml/src/pugixml.i"
-	@echo "... lib/pugixml/src/pugixml.s"
+	@echo "... edit_cache"
 	@echo "... src/I2CDevice.o"
 	@echo "... src/I2CDevice.i"
 	@echo "... src/I2CDevice.s"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
 	@echo "... src/inaDevice.o"
 	@echo "... src/inaDevice.i"
 	@echo "... src/inaDevice.s"
@@ -342,6 +363,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/maindata.o"
+	@echo "... src/maindata.i"
+	@echo "... src/maindata.s"
+	@echo "... src/server.o"
+	@echo "... src/server.i"
+	@echo "... src/server.s"
+	@echo "... src/temperatureLogger.o"
+	@echo "... src/temperatureLogger.i"
+	@echo "... src/temperatureLogger.s"
 .PHONY : help
 
 

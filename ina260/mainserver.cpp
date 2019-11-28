@@ -1,4 +1,4 @@
-#include "server.hpp"
+#include "src/server.hpp"
 
 //g++ -o server2 mainserver.cpp server.cpp
 

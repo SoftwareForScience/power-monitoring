@@ -21,21 +21,13 @@
 class Client {
 public:
 	Client(std::vector<std::string> hostnames);
-    void Socketlist();
+
     void Error(const char *msg);                //  Error function
 	std::map<std::string, std::string> Call();  //  Function to ask server pi's for data
 private:
 
     int pies;
     bool pass = false;
-
-    struct sContainer
-    {
-        std::string hname;
-        int shost;
-    };
-
-    std::vector<sContainer> psocket;
 
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;

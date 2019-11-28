@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="g-pi (219e7af1-374a-4e2a-8986-cf6b5733b582)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.GYQmTdo2sk" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/." />
+            <excludedPath local="true" path="$PROJECT_DIR$/." />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="sfs-3 (168ecabe-ac43-449a-990e-2fe08204d61f)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/datalogging" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

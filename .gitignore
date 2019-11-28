@@ -52,3 +52,5 @@ ina260/src/.idea/webServers.xml
 .gitignore
 >>>>>>> .gitignore
 >>>>>>> .gitignore
+ina260/CMakeFiles/clion-log.txt
+ina260/cmake-build-release-remote-host/CMakeFiles/clion-log.txt
