@@ -1,0 +1,12 @@
+
+fftw-3.3.8/
+
+*.toc
+
+*.gz
+
+verslag/algoritme.log
+
+*.blg
+
+*.aux

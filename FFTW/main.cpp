@@ -15,10 +15,15 @@
  *
  * */
 
+// to compile:
+//
+// c++ main.cpp samples.h bitmap_image.hpp -lfftw3_mpi -lmpich -pthread -lfftw3_threads -lfftw3 -lm -o main
+
 
 #include <iostream>
 #include <stdio.h>
 #include <fftw3.h>
+#include <fftw3-mpi.h>
 #include "samples.h"
 #include "bitmap_image.hpp"
 #include <omp.h>
@@ -68,6 +73,7 @@ void calc_back_to_samples (fftw_complex* result) {
 
 }
 
+/* create bmp file from the input string */
 void input_string_to_bmp (double* string){
 
     int width = sqrt(NUM_POINTS);
@@ -83,7 +89,10 @@ void input_string_to_bmp (double* string){
     for(int h = 0; h < height; h++){
         for(int w = 0; w < width; w++){
 
-            colour = (u_int8_t)(string[i] /2 * 0xFF);
+            /* +1 to get rid of negative values in sin wave
+             * /2 so max value = 1 then times 0xFF to get
+             * values between 0 and 0xFF*/
+            colour = (u_int8_t)((string[i]+1)/2  * 0xFF);
 
             draw.pen_color(colour, colour, colour);
             draw.plot_pixel(w,h);
@@ -95,6 +104,8 @@ void input_string_to_bmp (double* string){
 
 }
 
+
+/* creates bmp from the frequency domain output */
 void FFT_string_to_bmp (fftw_complex* string){
 
     int width = sqrt(NUM_POINTS);
@@ -113,7 +124,7 @@ void FFT_string_to_bmp (fftw_complex* string){
             double mag = sqrt(string[i][REAL] * string[i][REAL] +
                               string[i][IMAG] * string[i][IMAG]);
 
-            colour = (u_int8_t)(mag /2 * 0xFF);
+            colour = (u_int8_t)(mag * 0xFF);
 
             draw.pen_color(colour, colour, colour);
             draw.plot_pixel(w,h);
@@ -123,9 +134,10 @@ void FFT_string_to_bmp (fftw_complex* string){
     }
 
     image.save_image("processed_string_frequency_domain.bmp");
-
 }
 
+
+/* creates bmp from the string converted back to the time domain */
 void IFFT_string_to_bmp (fftw_complex* string){
 
     int width = sqrt(NUM_POINTS);
@@ -141,7 +153,7 @@ void IFFT_string_to_bmp (fftw_complex* string){
     for(int h = 0; h < height; h++){
         for(int w = 0; w < width; w++){
 
-            colour = (u_int8_t)((string[i][REAL]/NUM_POINTS) /2 * 0xFF);
+            colour = (u_int8_t)(((string[i][REAL]/NUM_POINTS)+1)/2 * 0xFF);
 
             draw.pen_color(colour, colour, colour);
             draw.plot_pixel(w,h);
@@ -155,13 +167,12 @@ void IFFT_string_to_bmp (fftw_complex* string){
 }
 
 
-int main() {
+int main(int argc, char **argv) {
 
+    /* create bmp file from input string */
     input_string_to_bmp(real_part);
 
-
     /*arrays with a real and imaginary part*/
-
     fftw_complex signal[NUM_POINTS];
     fftw_complex result[NUM_POINTS];
     fftw_complex iresult[NUM_POINTS];
@@ -169,9 +180,13 @@ int main() {
     /* fill an array with data  */
     fill_signal_1d(signal, real_part, imaginary_part);
 
-    /* setup for multithreading  currently not working*/
-    //fftw_init_threads();
-    //fftw_plan_with_nthreads(4);
+    /* setup for multithreading*/
+    fftw_init_threads();
+    fftw_plan_with_nthreads(4);
+
+    /* MPI initialisation */
+    MPI_Init(&argc, &argv);
+    fftw_mpi_init();
 
     /* create plan for time domain to freq domain  */
     fftw_plan plan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
@@ -189,19 +204,25 @@ int main() {
 				                           FFTW_BACKWARD,
 				                           FFTW_ESTIMATE);
 
+
     /* execute plans and print the magnitudes */
     fftw_execute(plan);
     calc_magnitude(result);
 
+    /* make bmp from freq domain */
     FFT_string_to_bmp(result);
 
     fftw_execute(iplan);
+
+    /* make bmp from inverse fft */
     IFFT_string_to_bmp(iresult);
     calc_back_to_samples(iresult);
 
     /* cleanup memory used */
     fftw_destroy_plan(plan);
-    //fftw_cleanup_threads();
+    fftw_destroy_plan(iplan);
+
+    fftw_cleanup_threads();
 
     return 0;
 }

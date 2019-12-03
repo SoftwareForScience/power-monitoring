@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/bitmap_image.hpp
+algorithm
+-
+cmath
+-
+cstdlib
+-
+cstring
+-
+fstream
+-
+iostream
+-
+iterator
+-
+limits
+-
+string
+-
+vector
+-
+
 /home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/main.cpp
 iostream
 -
@@ -15,6 +37,8 @@ fftw3.h
 -
 samples.h
 /home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/samples.h
+bitmap_image.hpp
+/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/bitmap_image.hpp
 omp.h
 -
 math.h

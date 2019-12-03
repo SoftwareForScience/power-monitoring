@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/main.cpp" "/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/cmake-build-debug/CMakeFiles/FFTW.dir/main.cpp.o"
+  "/home/pi/FFT/main.cpp" "/home/pi/FFT/cmake-build-remote/CMakeFiles/FFT.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

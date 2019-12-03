@@ -1,4 +1,4 @@
-# Install script for directory: /home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW
+# Install script for directory: /home/pi/FFT
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFTW/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/pi/FFT/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

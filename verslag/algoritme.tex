@@ -129,7 +129,7 @@ The DFT is much more suitable for computation since it is a finite set of calcul
 
 \subsection{The Fast Fourier Transform}
 The computation time for computing a Fourier transform is proportional to the amount of samples (\(n\)) squared, \(n^2\) so naturally this gets slow rather fast the higher the number of samples gets. So in 1965 James Cooley and John Tukey developed the Fast Fourier transform (the FFT). With the FFT the computation time is proportional to \(\frac{n}{2}\) \(log_{2}\) \(n\) \cite{Sig} which is significantly faster.
-We can see just how much faster it is if we divide \(n^2\) by \(\frac{n}{2}\) \(log_{2}\) \(n\) giving: \[y = \frac{2 n^2}{n log_{2} n}\] where y is the amount of times the FFT is faster and N being the nr of samples. When plotted it looks like this:
+We can see just how much faster it is if we divide \(n^2\) by \(\frac{n}{2}\) \(log_{2}\) \(n\) giving: \[y = \frac{2 n^2}{n log_{2} n}\] where \(y\) is the amount of times the FFT is faster and \(n\) being the nr of samples. When plotted it looks like this:
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\linewidth]{fft_tegen_ft}
@@ -168,7 +168,7 @@ In radio astronomy it works the other way around. Instead of having an image whi
 	\label{FFT use in radio astronomy}
 \end{figure} 
 
-But how exactly does it do this, well that is actually quite simple. First you look at the image as a matrix of values, then you apply a Fourier transformation over the rows, and then over the columns. And that's it, now for the inverse Fourier transform you will have to apply it over the columns first and then end with the rows to get the original image.     
+But how exactly does it do this, well that is actually quite simple. First you look at the image as a matrix of values, then you apply a Fourier transformation over the rows, and then over the columns. And that's it, now for the inverse Fourier transform you will have to apply it over the columns first and then end with the rows to get back to the original image.     
 
 \section{How are we planning to set up a test platform}
 
@@ -185,6 +185,11 @@ For the algorithm we want the stack to be able to compute a two dimensional FFT 
 Now we also want to know what the influence of multi processing is on power consumption and computation speed, so we will have to design the algorithm in a way that enables us to add and subtract processors without compromising the algorithm. That way we can run the algorithm on a single to \(n\) amount of processors, and measure the effects. 
 
 \newpage
+
+\section{The FFTW library}
+
+To make the project as open access as possible we have chosen for using a library that is being maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads and when using mpi\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. 
+
 
 
 \bibliographystyle{ieeetr}
