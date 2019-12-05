@@ -1,0 +1,10 @@
+# MacOS
+.DS_Store
+
+# LaTeX files
+*.log
+*.aux
+*.out
+*.synctex.gz
+*.toc
+
