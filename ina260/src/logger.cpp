@@ -23,17 +23,10 @@ logger::logger(fs::path outputDir, const fs::path &config, int port)
 void logger::startMea()
 {
 	this->runDir = this->outDir.string() + "/" +
-			date::format("%F %T", date::floor<ch::milliseconds>(ch::system_clock::now())) + "/";
+			date::format("%F_%T", date::floor<ch::milliseconds>(ch::system_clock::now())) + "/";
 
 	if (!fs::exists(this->runDir))
 	{   fs::create_directory(this->runDir);   }
-
-	// Get hostnames and start temperature server
-	std::vector<std::string> hostnames;
-	for (auto &node : this->nodes)
-	{   hostnames.emplace_back(node.name);    }
-
-	this->tlog = temperatureLogger(this->runDir, hostnames);
 
 	// Initialise CSV files for all pi's
 	for (auto &node : this->nodes)
@@ -41,11 +34,11 @@ void logger::startMea()
 		fs::path outFile = this->runDir.string() + node.name + ".csv";
 		std::cout << "outfile: " << outFile.string() << std::endl;
 		node.file = std::ofstream(outFile);
-		node.file << "date, time, name, amps, volts, watts\n";
+		node.file << "date, time, name, amps, volts, watts, dcelcius\n";
 		node.file.flush();
 	}
 
-	this->tlog.startLog();
+	this->server_.Startserv();
 
 	// Start thread and return to main thread
 	this->thread = new std::thread(&logger::run, this);
@@ -59,7 +52,7 @@ void logger::stopMea()
 	if (this->thread->joinable())
 	{   this->thread->join();   }
 
-	this->tlog.stopLog();
+	this->server_.Stopserv();
 
 	for (auto &node : this->nodes)
 	{
@@ -75,6 +68,8 @@ void logger::run()
 		auto now = ch::high_resolution_clock::now();
 		std::string ftime = date::format("%F, %T", date::floor<ch::milliseconds>(ch::system_clock::now()));
 
+		std::map<std::string, std::string> temps = this->server_.Call();
+
 		// Get and write measurements to file
 		for (auto& node : this->nodes)
 		{
@@ -83,7 +78,8 @@ void logger::run()
 					", " + node.name +                                          //  name
 					", " + std::to_string(node.ina->getShuntCurrent()) +        //  amps
 					", " + std::to_string(node.ina->getBusVoltage()) +          //  volts
-					", " + std::to_string(node.ina->getPower()) + "\n";         //  power
+					", " + std::to_string(node.ina->getPower()) +               //  power
+					", " + temps[node.name] + "\n";                             //  Temperature
 			node.file << entry;
 		}
 
@@ -91,7 +87,7 @@ void logger::run()
 		auto later = ch::high_resolution_clock::now();
 		ch::duration<double> time_span = ch::duration_cast<ch::microseconds>(later - now);
 
-		usleep(500000/* - time_span.count()*/);
+		usleep(100000/* - time_span.count()*/);
 	}
 }
 

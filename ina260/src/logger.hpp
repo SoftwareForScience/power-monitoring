@@ -15,7 +15,7 @@
 #include <zconf.h>
 #include <chrono>
 #include "inaDevice.hpp"
-#include "temperatureLogger.hpp"
+#include "server.hpp"
 #include "../lib/pugixml/src/pugixml.hpp"
 #include "../lib/date/include/date/date.h"
 
@@ -41,7 +41,7 @@ private:
 
 	bool stop = false;
 	std::thread* thread;
-	temperatureLogger tlog = temperatureLogger("", std::vector<std::string>());
+	Server server_ = Server();
 
 	fs::path outDir, runDir;
 	std::vector<piContainer> nodes;

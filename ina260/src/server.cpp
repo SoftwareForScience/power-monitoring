@@ -11,12 +11,12 @@ void Server::Connect() {
         std::cout << this->host << this->port << std::endl;
 
         while (!stop) {
-            std::cout << "We komen in connect" << std::endl;
+//            std::cout << "We komen in connect" << std::endl;
             srv.rcvfrom(this->buf, this->from, this->fromport);
 
             std::cout << "Datagram from " << this->from << ":" << this->fromport << " "
                       << this->buf << std::endl;
-            this->m[this->from] = string(this->buf);
+            this->m[this->from] = std::string(this->buf);
 
             //srv.sndto(answer, from, fromport);
         }
