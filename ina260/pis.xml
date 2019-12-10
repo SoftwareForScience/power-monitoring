@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<list>
+<!--    <pi>-->
+<!--        <hostname>raspberrypi-0.local</hostname>-->
+<!--        <i2c>0x40</i2c>-->
+<!--    </pi>-->
+<!--    <pi>-->
+<!--        <hostname>raspberrypi-1.local</hostname>-->
+<!--        <i2c>0x41</i2c>-->
+<!--    </pi>-->
+<!--    <pi>-->
+<!--        <hostname>raspberrypi-2.local</hostname>-->
+<!--        <i2c>0x42</i2c>-->
+<!--    </pi>-->
+    <pi>
+        <hostname>raspberrypi-3.local</hostname>
+        <i2c>0x43</i2c>
+    </pi>
+    <pi>
+        <hostname>raspberrypi-g.local</hostname>
+        <i2c>0x44</i2c>
+    </pi>
+    <switch>
+        <hostname>switch1</hostname>
+        <i2c>0x45</i2c>
+    </switch>
+    <switch>
+        <hostname>switch0</hostname>
+        <i2c>0x46</i2c>
+    </switch>
+</list>

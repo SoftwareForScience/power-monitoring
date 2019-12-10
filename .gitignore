@@ -1,0 +1,15 @@
+*.b#1
+*.s#1
+*.b#2
+*.b#3
+*.s#2
+*.b#4
+*.b#5
+ina260/pcb/INA260_SFS.b#6
+*.b#7
+*/.idea/*
+*/cmake-*
+.DS_Store
+.gitignore
+ina260/CMakeFiles/clion-log.txt
+ina260/cmake-build-release-remote-host/CMakeFiles/clion-log.txt
