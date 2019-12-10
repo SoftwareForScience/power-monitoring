@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/FFTW3.dir/main.cpp.o  -o FFTW3 

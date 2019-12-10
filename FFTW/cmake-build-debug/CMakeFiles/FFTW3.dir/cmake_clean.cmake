@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FFTW3.dir/main.cpp.o"
-  "FFTW3"
+  "CMakeFiles/FFTW3.dir/main.cpp.obj"
+  "FFTW3.exe"
+  "FFTW3.exe.manifest"
+  "FFTW3.lib"
   "FFTW3.pdb"
 )
 
