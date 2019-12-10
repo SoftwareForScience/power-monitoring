@@ -8,8 +8,28 @@
             <mapping deploy="/tmp/tmp.GYQmTdo2sk" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-g-pi" />
             <excludedPath local="true" path="$PROJECT_DIR$/." />
-            <excludedPath local="true" path="$PROJECT_DIR$/." />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-sfs-2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-sfs-2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-g-pi" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="sfs-2 (ce4813b0-b118-40a6-aa4b-7e1130cb52ae)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.o94TCl9hJ0" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-g-pi" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-sfs-2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-sfs-2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-g-pi" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
           </excludedPaths>
         </serverdata>
       </paths>

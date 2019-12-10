@@ -1,52 +1,26 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
 #include <unistd.h>
-#include <vector>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
+#include <iostream>
 #include <string>
-#include <cstring>
-#include <iterator>
-#include <map>
+#include "../lib/libsocket/headers/exception.hpp"
+#include "../lib/libsocket/headers/inetclientdgram.hpp"
 
-#define DEGREE 9
-#define PORT 20001
+using std::string;
 
 class Client {
 public:
-	Client(std::vector<std::string> hostnames);
-    void Socketlist();
     void Error(const char *msg);                //  Error function
-	std::map<std::string, std::string> Call();  //  Function to ask server pi's for data
+	void Connect();
 private:
 
-    int pies;
-    bool pass = false;
+    string host = "raspberrypi-g.local";
+    string port = "20001";
+    string answer;
+    bool stop = false;
 
-    struct sContainer
-    {
-        std::string hname;
-        int shost;
-    };
 
-    std::vector<sContainer> psocket;
-
-    int sockfd, portno, n;
-    struct sockaddr_in serv_addr;
-    struct hostent *server;
-
-    std::vector<std::string> hostnames;
-    std::map<std::string, std::string> m;
-    std::pair<std::string, std::string> p;
-
-    std::string localhost, local = ".local", tempp = "temp\n";
-    char buffer[DEGREE];
 };
 
 #endif //CLIENT_HPP

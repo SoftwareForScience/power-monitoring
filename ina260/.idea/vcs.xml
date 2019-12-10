@@ -2,7 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/args" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/date" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/libsocket" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/pugixml" vcs="Git" />
   </component>
 </project>

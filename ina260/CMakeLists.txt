@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.13)
 project(ina260)
 
 set (CMAKE_CXX_STANDARD 17)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -lm -lwiringPi -lpugixml -lpthread -Wall" )
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -lm -lwiringPi -lsocket++ -lpugixml -lpthread -Wall" )
 set (CMAKE_REQUIRED_FLAGS -std=c++17)
 
 file (GLOB SOURCE_FILES
@@ -21,5 +21,5 @@ include_directories(
 		"/usr/local/include"
 )
 
-target_link_libraries(ina260 stdc++fs pugixml)
+target_link_libraries(ina260 stdc++fs pugixml socket++)
 
