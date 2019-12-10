@@ -9,7 +9,6 @@
 #include <string>
 #include <thread>
 #include <fstream>
-#include <iostream>
 #include "server.hpp"
 #include "../lib/date/include/date/date.h"
 
@@ -35,7 +34,7 @@ private:
 	void run();
 	std::thread* thread;
 
-	Client client_ = Client(std::vector<std::string>());
+	Server server_ = Server();
 
 	std::vector<piTContainer> nodes;
 };

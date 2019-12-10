@@ -21,12 +21,13 @@ temperatureLogger::temperatureLogger(fs::path outDir, std::vector<std::string> h
 		this->nodes.back().file.flush();
 	}
 
-	this->client_ = Client(hostnames);
+	this->server_ = Server();
 }
 
 void temperatureLogger::startLog()
 {
 	this->stop = false;
+	this->server_.Startserv();
 	this->thread = new std::thread(&temperatureLogger::run, this);
 	this->thread->detach();
 }
@@ -34,6 +35,7 @@ void temperatureLogger::startLog()
 void temperatureLogger::stopLog()
 {
 	this->stop = true;
+	this->server_.Stopserv();
 	if (this->thread->joinable())
 	{   this->thread->join();   }
 
@@ -50,11 +52,11 @@ void temperatureLogger::run()
 	{
 		auto now = ch::high_resolution_clock::now();
 		std::string ftime = date::format("%F, %T", date::floor<ch::milliseconds>(ch::system_clock::now()));
-		std::map<std::string, std::string> temps = this->client_.Call();
+		std::map<std::string, std::string> temps = this->server_.Call();
 
 		for (auto &a : this->nodes)
 		{
-			std::cout << a.name << std::endl;
+			//std::cout << a.name << std::endl;
 			std::string entry = ftime +                         //  Date
 			                    ", " + a.name +                 //  Name
 			                    ", " + temps[a.name] + "\n";    //  Temperature
