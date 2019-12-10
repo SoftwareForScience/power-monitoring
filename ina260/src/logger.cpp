@@ -28,7 +28,7 @@ void logger::startMea()
 	if (!fs::exists(this->runDir))
 	{   fs::create_directory(this->runDir);   }
 
-	// Get hostnames and start temperature client
+	// Get hostnames and start temperature server
 	std::vector<std::string> hostnames;
 	for (auto &node : this->nodes)
 	{   hostnames.emplace_back(node.name);    }

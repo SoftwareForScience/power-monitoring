@@ -4,7 +4,6 @@
 
 int main(int argc, char **argv)
 {
-
 	std::cout << "Hello, World!" << std::endl;
 
 	args::ArgumentParser parser("Logger options", "* required");
@@ -19,13 +18,13 @@ int main(int argc, char **argv)
 	args::CompletionFlag completion(parser, {"complete"});
 
 	try
-	{
-		parser.ParseCLI(argc, argv);
-	} catch (args::Help)
+	{   parser.ParseCLI(argc, argv);    }
+	catch (args::Help)
 	{
 		std::cout << parser;
 		return 1;
-	} catch (args::Error& e)
+	}
+	catch (args::Error& e)
 	{
 		std::cerr << e.what() << std::endl << parser;
 		return 1;

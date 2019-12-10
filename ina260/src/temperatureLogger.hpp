@@ -9,7 +9,8 @@
 #include <string>
 #include <thread>
 #include <fstream>
-#include "client.hpp"
+#include <iostream>
+#include "server.hpp"
 #include "../lib/date/include/date/date.h"
 
 namespace fs = std::filesystem;
