@@ -8,3 +8,5 @@
 *.synctex.gz
 *.toc
 
+# Other dirs
+ina260
