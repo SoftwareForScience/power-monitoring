@@ -1,0 +1,34 @@
+---
+- name: G-PI Installer
+  tasks:
+    - name: Get aptitude
+      become: true
+      apt:
+        name: aptitude
+        force_apt_get: yes
+
+    - name: Get packages
+      become: true
+      apt:
+        pkg:
+        - wiringpi
+        - git
+        - cmake
+        - autoconf
+        - automake
+        state: latest
+
+    - name: Get repo
+      git:
+        repo: "https://gitlab.fdmci.hva.nl/sfs-power-monitoring/powermonitoring.git"
+        dest: powermonitoring
+        recursive: yes
+
+    - name: Run cmake
+      command: cd powermonitoring/ina260; cmake .
+
+    - name: Build targets (Supposed to throw notes and warnings at you)
+      make:
+        chdir: powermonitoring/ina260
+        target: all
+
