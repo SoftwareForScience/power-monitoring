@@ -173,7 +173,7 @@ But how exactly does it do this, well that is actually quite simple. First you l
 \section{How are we planning to set up a test platform}
 
 We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure how adding and subtracting processors affects Calculation time, power consumption and heat generation.\\To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed dedicated hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
-For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like the ones shown in the examples from figure \ref{2d_sine_with_transform}. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works. The process is illustrated here: 
+For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like the ones shown in the examples from figure[\ref{2d_sine_with_transform}]. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works. The process is illustrated here: 
 
 \begin{figure}[!ht]
 	\centering
@@ -188,9 +188,50 @@ Now we also want to know what the influence of multi processing is on power cons
 
 \section{The FFTW library}
 
-To make the project as open access as possible we have chosen for using a library that is being maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads and when using mpi\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. 
+To make the project as open access as possible we have chosen for using a library that is maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads and when using mpi\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. \par 
+First we created a program that could run the test as described in figure[\ref{algorithm test}] For this we also needed a way to parse and generate bitmaps, Another free licensed library was used for that bit,  bitmap\_image.hpp from partow.net. For the generation of the input string (a 2d sine wave) Matlab was used. Here a pseudo version of the main function is shown: 
 
+\begin{lstlisting}[language=C, caption= FFTW image process main]
+int main(int argc, char **argv) {
 
+/* create bmp file from input string */
+input_string_to_bmp(real_part);
+
+/* fill an array with data  */
+fill_signal_1d(signal, real_part, imaginary_part);
+
+/* create plan for time domain to freq domain  */
+fftw_plan plan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
+sqrt(NUM_POINTS),
+signal,
+result,
+FFTW_FORWARD,
+FFTW_ESTIMATE);
+
+/* create plan for freq domain back to time */
+fftw_plan iplan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
+sqrt(NUM_POINTS),
+result,
+iresult,
+FFTW_BACKWARD,
+FFTW_ESTIMATE);
+
+/* execute plans and print the magnitudes */
+fftw_execute(plan);
+calc_magnitude(result);
+
+/* make bmp from freq domain */
+FFT_string_to_bmp(result);
+fftw_execute(iplan);
+
+/* make bmp from inverse fft */
+IFFT_string_to_bmp(iresult);
+calc_back_to_samples(iresult);
+
+return 0;
+}
+
+\end{lstlisting}
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography.bib}

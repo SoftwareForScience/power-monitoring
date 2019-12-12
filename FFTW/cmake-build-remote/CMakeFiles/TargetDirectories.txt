@@ -1,3 +1,0 @@
-/home/pi/FFT/cmake-build-remote/CMakeFiles/rebuild_cache.dir
-/home/pi/FFT/cmake-build-remote/CMakeFiles/FFT.dir
-/home/pi/FFT/cmake-build-remote/CMakeFiles/edit_cache.dir

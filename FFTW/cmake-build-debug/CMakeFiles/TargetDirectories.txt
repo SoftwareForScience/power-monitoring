@@ -1,3 +1,0 @@
-C:/Users/qlepe/Documents/Minor/Power_Monitoring/GIT-FFT/powermonitoring/FFTW/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/qlepe/Documents/Minor/Power_Monitoring/GIT-FFT/powermonitoring/FFTW/cmake-build-debug/CMakeFiles/FFTW3.dir
-C:/Users/qlepe/Documents/Minor/Power_Monitoring/GIT-FFT/powermonitoring/FFTW/cmake-build-debug/CMakeFiles/edit_cache.dir

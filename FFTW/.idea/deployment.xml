@@ -5,9 +5,11 @@
       <paths name="Remote Host (d5d33b85-a366-412b-b798-96b298642df3)">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/FFT" local="$PROJECT_DIR$" />
+            <mapping deploy="" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-local" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remoet" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remote" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
           </excludedPaths>

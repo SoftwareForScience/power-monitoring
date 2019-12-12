@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/FFT.dir/main.cpp.o  -o FFT 
