@@ -24,9 +24,17 @@ namespace fs = std::filesystem;
 class logger
 {
 public:
+	/*
+	 * @brief Initializes output folder if it doesn't exist, checks and loads config file
+	 * @param outputDir Path to output directory
+	 * @param config Path to config file
+	 * @port port for the client to contact servers on
+	 */
 	explicit logger(fs::path outputDir, const fs::path &config, int port);
 
+	/* @brief starts reading from the INA's and writing output to output directory */
 	void startMea();
+	/* @brief ... the same as the other one but it now _stops_ it */
 	void stopMea();
 private:
 	struct piContainer
