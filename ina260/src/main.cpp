@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 
 	logger_.startMea();
 
+	std::cout << "Press enter to exit" << std::endl;
 	getchar();
 
 	logger_.stopMea();
