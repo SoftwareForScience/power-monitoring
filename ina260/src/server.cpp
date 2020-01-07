@@ -14,8 +14,8 @@ void Server::Connect() {
 //            std::cout << "We komen in connect" << std::endl;
             srv.rcvfrom(this->buf, this->from, this->fromport);
 
-            std::cout << "Datagram from " << this->from << ":" << this->fromport << " "
-                      << this->buf << std::endl;
+//            std::cout << "Datagram from " << this->from << ":" << this->fromport << " "
+//                      << this->buf << std::endl;
             this->m[this->from] = std::string(this->buf);
 
             //srv.sndto(answer, from, fromport);
@@ -48,9 +48,9 @@ void Server::Stopserv()
 }
 
 void Server::Hostname() {
-        std::ifstream lhost("/etc/hostname");
-        lhost >> this->localhost;
-        lhost.close();
+	std::ifstream lhost("/etc/hostname");
+	lhost >> this->localhost;
+	lhost.close();
 }
 
 std::map<std::string, std::string> Server::Call() {

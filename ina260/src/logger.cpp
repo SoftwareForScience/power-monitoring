@@ -87,7 +87,7 @@ void logger::run()
 		auto later = ch::high_resolution_clock::now();
 		ch::duration<double> time_span = ch::duration_cast<ch::microseconds>(later - now);
 
-		usleep(100000/* - time_span.count()*/);
+//		usleep(100000/* - time_span.count()*/);
 	}
 }
 
