@@ -1,8 +1,10 @@
 #ifndef INA260_I2CDEVICE_HPP
 #define INA260_I2CDEVICE_HPP
 
-
 #include <cstddef>
+
+// this is a helper class from another project,
+// makes it easier to port to another library in the case that wiringPi gets deprecated
 
 class I2CDevice {
 public:
