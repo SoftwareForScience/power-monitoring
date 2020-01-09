@@ -1,3 +1,0 @@
-/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFT/cmake-build-debug/CMakeFiles/FFT.dir
-/home/bram/Desktop/School/SFS_PowerMonitoring/powermonitoring/FFT/cmake-build-debug/CMakeFiles/edit_cache.dir

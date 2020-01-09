@@ -188,42 +188,28 @@ Now we also want to know what the influence of multi processing is on power cons
 
 \section{The FFTW library}
 
-To make the project as open access as possible we have chosen for using a library that is maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads and when using mpi\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. \par 
+To make the project as open access as possible we have chosen for using a library that is maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads. And when using MPI\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. \par 
 First we created a program that could run the test as described in figure[\ref{algorithm test}] For this we also needed a way to parse and generate bitmaps, Another free licensed library was used for that bit,  bitmap\_image.hpp from partow.net. For the generation of the input string (a 2d sine wave) Matlab was used. Here a pseudo version of the main function is shown: 
 
-\begin{lstlisting}[language=C, caption= FFTW image process main]
+\begin{lstlisting}[language=C, caption= FFTW image process main.cpp]
 int main(int argc, char **argv) {
 
 /* create bmp file from input string */
 input_string_to_bmp(real_part);
-
 /* fill an array with data  */
 fill_signal_1d(signal, real_part, imaginary_part);
-
 /* create plan for time domain to freq domain  */
 fftw_plan plan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
-sqrt(NUM_POINTS),
-signal,
-result,
-FFTW_FORWARD,
-FFTW_ESTIMATE);
-
+sqrt(NUM_POINTS), signal, result,FFTW_FORWARD,FFTW_ESTIMATE);
 /* create plan for freq domain back to time */
 fftw_plan iplan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
-sqrt(NUM_POINTS),
-result,
-iresult,
-FFTW_BACKWARD,
-FFTW_ESTIMATE);
-
+sqrt(NUM_POINTS), result, iresult,FFTW_BACKWARD,FFTW_ESTIMATE);
 /* execute plans and print the magnitudes */
 fftw_execute(plan);
 calc_magnitude(result);
-
 /* make bmp from freq domain */
 FFT_string_to_bmp(result);
 fftw_execute(iplan);
-
 /* make bmp from inverse fft */
 IFFT_string_to_bmp(iresult);
 calc_back_to_samples(iresult);
@@ -232,7 +218,35 @@ return 0;
 }
 
 \end{lstlisting}
+The code yielded the following results:
+First the input string is converted to bitmap to check if the input string is interpreted the right way. 
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{input_string}
+	\caption{: The input string converted to bitmap }
+	\label{input string}
+\end{figure}
+
+This two dimensional sine wave is then transformed to the Fourier domain, and if the program works correctly we should expect a mostly black image with some white dots. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{processed_string_frequency_domain}
+	\caption{: The input string converted to the Fourier domain}
+	\label{processed_string_frequency_domain}
+\end{figure}
+
+Now finally to be one hundred percent certain that the program works an inverse Fourier is applied to the image. If this returns the original image then we can deduce that the program doesn't affect the data in it's transformation and works correctly. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{processed_string_time_domain}
+	\caption{: The Fourier transformed string transformed back to the time domain}
+	\label{processed_string_time_domain}
+\end{figure}
+
+As shown the program works as expected and can now be used to interpret images from radio astronomy 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography.bib}
 
