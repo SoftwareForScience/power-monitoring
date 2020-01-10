@@ -1,3 +1,6 @@
 [submodule "client/lib/libsocket"]
 	path = client/lib/libsocket
 	url = https://github.com/dermesser/libsocket
+[submodule "libsocket"]
+	path = libsocket
+	url = https://github.com/dermesser/libsocket

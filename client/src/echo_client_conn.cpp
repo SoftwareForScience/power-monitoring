@@ -11,13 +11,15 @@
  * Sends and receives messages via connected UDP sockets
  */
 
-int main(void) {
+int main(int argc, char** argv) {
     using std::string;
 
-    string host = "raspberrypi-g.local";
+    //string host = "raspberrypi-g.local";
     //string host2 = "raspberrypi-2.local";
-    string port = "20001";
+    //string port = "20001";
     //string port2 = "20002";
+    string host = argv[1];
+    string port = argv[0];
     string answer;
     //string answer2;
 
