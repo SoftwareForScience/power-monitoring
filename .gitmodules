@@ -9,4 +9,4 @@
 	url = https://github.com/Taywee/args.git
 [submodule "ina260/lib/libsocket"]
 	path = ina260/lib/libsocket
-	url = https://github.com/dermesser/libsocket
+	url = https://github.com/dermesser/libsocket.git
