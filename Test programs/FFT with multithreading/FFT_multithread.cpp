@@ -23,6 +23,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <fftw3.h>
+#include <chrono> 
 #include "samples.h"
 #include "bitmap_image.hpp"
 #include <omp.h>
@@ -201,25 +202,37 @@ int main(int argc, char **argv) {
                                        FFTW_ESTIMATE);
 
 
-    /* execute plans and print the magnitudes */
+    /* Record start time */
+    auto start = std::chrono::high_resolution_clock::now();
+
+    /*execute plans*/
     fftw_execute(plan);
-    calc_magnitude(result);
+    fftw_execute(iplan);
+
+    /* Record end time */
+    auto finish = std::chrono::high_resolution_clock::now();
+
+    /*Calculate and print magnitude and samples*/ 
+    //calc_magnitude(result);
+    //calc_back_to_samples(iresult);
 
     /* make bmp from freq domain */
     FFT_string_to_bmp(result);
 
-    fftw_execute(iplan);
-
-    /* make bmp from inverse fft */
-    calc_back_to_samples(iresult);
+    /* make bmp from inverse fft */    
     IFFT_string_to_bmp(iresult);
 
+    /*output calculation time*/
+    std::chrono::duration<double> elapsed = finish - start;
+    std::cout << "Elapsed time: " << elapsed.count() << " s\n";
 
     /* cleanup memory used */
     fftw_destroy_plan(plan);
     fftw_destroy_plan(iplan);
 
     fftw_cleanup_threads();
+
+
 
     return 0;
 }

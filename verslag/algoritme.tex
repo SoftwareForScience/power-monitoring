@@ -246,7 +246,13 @@ Now finally to be one hundred percent certain that the program works an inverse 
 	\label{processed_string_time_domain}
 \end{figure}
 
-As shown the program works as expected and can now be used to interpret images from radio astronomy 
+As shown the program works as expected and can now be used to interpret images from radio astronomy.
+
+\section{Message Passing Interface}
+
+There is however one more change that has to be made for the program to meet our requirements, multiprocessing. MPI is the protocol that multi processing systems use to communicate between processors. Using MPI with the raspberry pi can be done using one of several libraries, we decided to use the Mpich library. \par This however did not turn out to be a wise choice. For some reason unbeknownst to us it just wouldn't work, the error messages were impossible to decipher and when looked up would lead you to years old mailing lists from Intel. After having done several re-installs which took quite some time, and following the provided install guide step by step. It still wouldn't work, not even the example codes included in the Mpich install package. \par So having concluded that Mpich-3.3.2 does not work with the raspberry pi's, another MPI library will be chosen. The setup now uses the Open MPI library which is installed by apt, and this works without issues. 
+  
+
 \bibliographystyle{ieeetr}
 \bibliography{bibliography.bib}
 
