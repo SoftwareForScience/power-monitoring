@@ -51,6 +51,7 @@ void Server::Hostname() {
 	std::ifstream lhost("/etc/hostname");
 	lhost >> this->localhost;
 	lhost.close();
+	this->localhost += ".local";
 }
 
 std::map<std::string, std::string> Server::Call() {
