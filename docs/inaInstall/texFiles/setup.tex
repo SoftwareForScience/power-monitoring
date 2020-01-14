@@ -34,4 +34,8 @@ After that, make sure every Pi has it's own ethernet connection to the switch. I
 \begin{itemize}
 	\item In the current release of Debian Buster, the Pi picks only one of two interfaces (WiFi or Ethernet). Keep this in mind when trying to connect the Pi's to your hotspot.
 \end{itemize}
-Finally, make sure the Pi is authorized to access the HvA gitlab servers with an account.
+Now you can make sure the Pi is authorized to access the HvA gitlab servers with an account.
+\newline
+The last step for setup, also the most essential for running, is to add all the Raspberry Pi's that you want to measure to your \code{/etc/hosts} file. For example, to add \code{raspberrypi-0}, you would write\newline
+\code{0.0.0.0 raspberrypi-0.local}\newline
+Where \code{0.0.0.0} has to be the actual IP address associated with the hostname. We have not been able to find out why this is necessary, but it seems that the logging programme is not able to do a reverse DNS lookup on it's own.
