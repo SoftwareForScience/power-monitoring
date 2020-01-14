@@ -1,0 +1,5 @@
+r\section{Installation}
+To install the logger, make sure you have the data logger pi setup in your ansible hosts file. In our case this file was located in  \code{/etc/ansible/hosts} and contained the following lines:\newline 
+ \code{[sgs]\newline
+raspberrypi-g.local ansible\_user=pi}\newline
+This means that you can run the playbook file \code{docs/installG.yaml} with the following command: \code{ansible-playbook docs/installG.yaml -l sgs}.

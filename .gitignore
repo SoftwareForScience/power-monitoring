@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.b#1
 *.s#1
 *.b#2
@@ -13,3 +14,17 @@ ina260/pcb/INA260_SFS.b#6
 .gitignore
 ina260/CMakeFiles/clion-log.txt
 ina260/cmake-build-release-remote-host/CMakeFiles/clion-log.txt
+=======
+# MacOS
+.DS_Store
+
+# LaTeX files
+*.log
+*.aux
+*.out
+*.synctex.gz
+*.toc
+
+# Other dirs
+ina260
+>>>>>>> documentatie

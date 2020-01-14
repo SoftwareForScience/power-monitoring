@@ -1,0 +1,64 @@
+\documentclass[a4paper, 12pt, one column, aas_macros]{article}
+
+%% Language and font encodings. This says how to do hyphenation on end of lines.
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{aas_macros}
+
+%% Adds in official euro sign
+\usepackage[official]{eurosym}
+
+%% Sets page size and margins. You can edit this to your liking
+\usepackage[top=1.3cm, bottom=2.0cm, outer=2.5cm, inner=2.5cm, heightrounded,
+marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
+
+%% Useful packages
+\usepackage{graphicx} %allows you to use jpg or png images. PDF is still recommended
+\graphicspath{ {./images/} } % Sets base path for images
+\usepackage[colorlinks=False]{hyperref} % add links inside PDF files
+\usepackage{amsmath}  % Math fonts
+\usepackage{amsfonts} % More fonts
+\usepackage{amssymb}  % Symbols
+\usepackage{subcaption} % Sub-figure captions
+
+%% Citation package
+\usepackage[nottoc]{tocbibind} %% Add refs to ToC
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{dinat}
+% \setcitestyle{authoryear,open={(},close={)}}
+
+%% Change content and figure titles
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\figurename}{Figure}
+
+\def\code#1{\texttt{#1}}
+
+%% Begin document
+\begin{document}
+
+%% Create title page
+\begin{titlepage}
+    \title{
+        Installing the power and temperature logger
+    }
+    \author{Stefan Schokker}
+    \date{\today}
+    \thispagestyle{empty}
+\end{titlepage}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\setcounter{page}{1}
+\input setup
+\input installation
+\input running
+
+
+\end{document}

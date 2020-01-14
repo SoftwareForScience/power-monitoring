@@ -1,0 +1,59 @@
+---
+- name: G-PI Installer
+  hosts: sgs
+  tasks:
+    - name: Get aptitude
+      become: true
+      apt:
+        name: aptitude
+        force_apt_get: yes
+
+    - name: Get packages
+      become: true
+      apt:
+        pkg:
+        - wiringpi
+        - git
+        - cmake
+        - autoconf
+        - automake
+        state: latest
+
+    - name: Get repo
+      git:
+        repo: "git@gitlab.fdmci.hva.nl:sfs-power-monitoring/powermonitoring.git"
+        dest: powermonitoring
+        recursive: yes
+
+    - name: Run cmake in submodule PugiXML
+      command: cmake .
+      args:
+        chdir: powermonitoring/ina260/lib/pugixml/
+
+    - name: Build submodule (PugiXML)
+      become: true
+      make:
+        chdir: powermonitoring/ina260/lib/pugixml
+        target: install
+
+    - name: Run cmake in submodule (Libsocket++)
+      command: cmake .
+      args:
+        chdir: powermonitoring/ina260/lib/libsocket/
+
+    - name: Build submodule (Libsocket++)
+      become: true
+      make:
+        chdir: powermonitoring/ina260/lib/libsocket
+        target: install
+
+    - name: Run cmake in own dir
+      command: cmake .
+      args:
+        chdir: powermonitoring/ina260
+
+    - name: Build logger
+      make:
+        chdir: powermonitoring/ina260
+        target: all
+
