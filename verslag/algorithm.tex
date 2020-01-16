@@ -52,6 +52,10 @@
 		\includegraphics{PowerMonitoring_logo}
 	\end{figure}	
 	\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.15]{Logo-hva}
+    \end{figure}
+	\begin{figure}[htbp]
 		\centering
 		\includegraphics{Logo-astron}
 	\end{figure}
@@ -172,7 +176,7 @@ But how exactly does it do this, well that is actually quite simple. First you l
 
 \section{How are we planning to set up a test platform}
 
-We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure how adding and subtracting processors affects Calculation time, power consumption and heat generation.\\To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed dedicated hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
+We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure how adding and subtracting processors affects Calculation time, power consumption and heat generation.\\To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed dedicated hardware, and data logging software.
 For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like the ones shown in the examples from figure[\ref{2d_sine_with_transform}]. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works. The process is illustrated here: 
 
 \begin{figure}[!ht]
@@ -251,7 +255,7 @@ As shown the program works as expected and can now be used to interpret images f
 \section{Message Passing Interface}
 
 There is however one more change that has to be made for the program to meet our requirements, multiprocessing. MPI is the protocol that multi processing systems use to communicate between processors. Using MPI with the raspberry pi can be done using one of several libraries, we decided to use the Mpich library. \par This however did not turn out to be a wise choice. For some reason unbeknownst to us it just wouldn't work, the error messages were impossible to decipher and when looked up would lead you to years old mailing lists from Intel. After having done several re-installs which took quite some time, and following the provided install guide step by step. It still wouldn't work, not even the example codes included in the Mpich install package. \par So having concluded that Mpich-3.3.2 does not work with the raspberry pi's, another MPI library will be chosen. The setup now uses the Open MPI library which is installed by apt, and this works without issues. 
-  
+
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography.bib}
