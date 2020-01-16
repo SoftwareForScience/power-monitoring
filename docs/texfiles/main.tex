@@ -21,6 +21,7 @@ marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
 \usepackage{amsfonts} % More fonts
 \usepackage{amssymb}  % Symbols
 \usepackage{subcaption} % Sub-figure captions
+\usepackage{listings}   % Code style text
 
 %% Citation package
 \usepackage[nottoc]{tocbibind} %% Add refs to ToC
@@ -40,9 +41,9 @@ marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
 %% Create title page
 \begin{titlepage}
     \title{
-        Installing the power and temperature logger
+        SFS | Clean install and running setup
     }
-    \author{Stefan Schokker}
+    \author{PowerMonitoring 2020}
     \date{\today}
     \thispagestyle{empty}
 \end{titlepage}
@@ -54,11 +55,15 @@ marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
 \thispagestyle{empty}
 \tableofcontents
 \newpage
-
 \setcounter{page}{1}
-\input setup
-\input installation
-\input running
+\section{Logger}
+\input{logger/setup.tex}
+\input{logger/installation.tex}
+\input{logger/running.tex}
+\section{Client}
+\input{client/setup.tex}
+\input{client/installation.tex}
+\input{client/running.tex}
 
-
+\input{tests/Test_programs.tex}
 \end{document}
