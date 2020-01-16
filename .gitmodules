@@ -10,3 +10,6 @@
 [submodule "ina260/lib/libsocket"]
 	path = ina260/lib/libsocket
 	url = https://github.com/dermesser/libsocket.git
+[submodule "client/lib/libsocket"]
+	path = client/lib/libsocket
+	url = https://github.com/dermesser/libsocket
