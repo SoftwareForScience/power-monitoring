@@ -118,18 +118,18 @@ The Fourier transform is a mathematical way to describe signals in the frequency
 So the Fourier transform is a tool that can make you go from the time domain \(f(t)\), to the frequency domain \(F(\omega)\). It is written as: \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \] There also is an inverse Fourier transform, logically this goes from the frequency domain to the time domain:\[f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega)e^{j\omega t} d\omega \] 
 
 \newpage
-But how to make sense of this formula? Lets split it up into several parts, starting with \(e^{-j\omega t} dt\). Euler's number to the power of  \(\sqrt{-1} = j = e^j\) moves around in a circle on the complex plane for every \(2\pi\) units. So if we want to describe a sine wave over time \((t)\) we can do \(e^{-j2\pi t}\), but we also need the frequency \((f)\) so that gives \(e^{-j2\pi f t}\) and since \(2 \pi f\) equals \(\omega\) we get \[e^{-j\omega t} \] Right so now you can plot this for a lot of frequencies (from \(-\infty\) to \(\infty\)) and you'd get a bunch of different positions on a circle in the complex plane. Now if you multiply this by your time domain function \(f(t)\) the positions in the circle will align just right with the frequencies that are most present in that function. That way the frequencies that are most present get magnified where frequencies that aren't present stay small. And that is how we get \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \]  
+But how to make sense of this formula? Lets split it up into several parts, starting with \(e^{-j\omega t} dt\). Euler's number to the power of  \(\sqrt{-1} = j\)  so \(e^j\) moves around in a circle on the complex plane for every \(2\pi\) units. So if we want to describe a sine wave over time \((t)\) we can use \(e^{-j2\pi t}\), but we also need the frequency \((f)\) so that gives \(e^{-j2\pi f t}\) and since \(2 \pi f\) equals \(\omega\) we get \[e^{-j\omega t} \] Right so now you can plot this for a lot of frequencies (from \(-\infty\) to \(\infty\)) and you'd get a bunch of different positions on a circle in the complex plane. Now if you multiply this by your time domain function \(f(t)\) the positions in the circle will align just right with the frequencies that are most present in that function. That way the frequencies that are most present get magnified where frequencies that aren't present stay small. And that is how we get \[F(\omega) = \int_{-\infty}^{\infty} f(t)e^{-j\omega t} dt \]  
 
 \subsection{Discrete Fourier Transform}
 
 In the real world however you don't measure from negative infinity to infinity, since your data will always be over a finite time frame and your sensors won't be able to generate an infinite amount of samples. In the real world you will get a set of discrete points from when you begin plotting \((t_0)\) to the \(N^{th}\) sample \((t_{N-1})\) This is where the discrete Fourier transform (the DFT) comes in, it is described as \[X(k) = \sum_{n = 0}^{N -1} x[n]e^{\frac{-j 2 \pi k n}{N}}\]
 Here it isn't an integral over infinity but a sum for all values of \((n = 0)\) to the total amount of samples \((N -1)\) Also in the exponential \(\frac{k}{N}\) now describes the frequency. But now it instead of any possible frequency we are limited to a set of frequencies which are defined by the sampling frequency, and the total amount of samples \((N)\). This is partly because of the Nyquist limit, which states that to accurately measure a frequency you need to sample at at least twice that frequency. And thus is is impossible to use any frequency higher than: $\frac{sample freqency}{2}$
 
-The DFT is much more suitable for computation since it's a finite set of calculations. 
+The DFT is much more suitable for computation since it is a finite set of calculations. 
 
 \subsection{The Fast Fourier Transform}
 The computation time for computing a Fourier transform is proportional to the amount of samples (\(n\)) squared, \(n^2\) so naturally this gets slow rather fast the higher the number of samples gets. So in 1965 James Cooley and John Tukey developed the Fast Fourier transform (the FFT). With the FFT the computation time is proportional to \(\frac{n}{2}\) \(log_{2}\) \(n\) \cite{Sig} which is significantly faster.
-We can see just how much faster it is if we divide \(n^2\) by \(\frac{n}{2}\) \(log_{2}\) \(n\) giving: \[y = \frac{2 n^2}{n log_{2} n}\] where y is the amount of times the FFT is faster and N being the nr of samples. When plotted it looks like this:
+We can see just how much faster it is if we divide \(n^2\) by \(\frac{n}{2}\) \(log_{2}\) \(n\) giving: \[y = \frac{2 n^2}{n log_{2} n}\] where \(y\) is the amount of times the FFT is faster and \(n\) being the nr of samples. When plotted it looks like this:
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\linewidth]{fft_tegen_ft}
@@ -159,7 +159,7 @@ Now the Fourier transform of these waves is surprisingly simple, a single or a f
 \end{figure} 
 
 Here you can already see that as more dots are added in the frequency domain the two dimensional image gets more complex. And thus you can imagine that any Two dimensional picture can be represented using a matrix of dots in the frequency domain. If colour pictures want to be achieved you will need three of these grey value matrices. One for red, one for green and one for blue when those are put on top of each other a colour picture is made.\par
-In radio astronomy it works the other way around. Instead of having an image which has to be translated to the frequency domain, the array of radio telescopes receives their information in the frequency domain and will have to get it back into the time domain to get a coherent image. To achieve this a reverse FFT will have to be applied on the data. This image from radioastronomydm\cite{interferometry} shows it quite well (transformation goes from right to left): 
+In radio astronomy it works the other way around. Instead of having an image which has to be translated to the frequency domain, the array of radio telescopes receive their information in the frequency domain and will have to convert it back into the time domain to get a coherent image. To achieve this a reverse FFT will have to be applied to the data. This image from radioastronomydm\cite{interferometry} shows it quite well (transformation goes from right to left): 
 
 \begin{figure}[!ht]
 	\centering
@@ -168,26 +168,90 @@ In radio astronomy it works the other way around. Instead of having an image whi
 	\label{FFT use in radio astronomy}
 \end{figure} 
 
-But how exactly does it do this, well that is actually quite simple. First you look at the image as a matrix of values, then you apply a Fourier transformation over the rows, and then over the columns. And that's it, now for the inverse Fourier transform you will have to apply it over the columns first and then end with the rows to get the original image.     
+But how exactly does it do this, well that is actually quite simple. First you look at the image as a matrix of values, then you apply a Fourier transformation over the rows, and then over the columns. And that's it, now for the inverse Fourier transform you will have to apply it over the columns first and then end with the rows to get back to the original image.     
 
 \section{How are we planning to set up a test platform}
 
-We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure the effect of adding and subtracting processors on calculation time and how that affects power consumption. \par 
+We want to simulate a multi processor system that preforms a two dimensional inverse FFT on an image. We want to measure how adding and subtracting processors affects Calculation time, power consumption and heat generation.\\To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed dedicated hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
+For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like the ones shown in the examples from figure[\ref{2d_sine_with_transform}]. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works. The process is illustrated here: 
 
-To simulate the multi processor system we will use a stack of raspberry pi's. For the measuring of the power consumption we have developed hardware, and data logging software. These will be discussed in chapter \textbf{(!!!! placeholder for chapter on hardware and logging software !!!!)} 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\linewidth]{algorithm_test}
+	\caption{: Test to see if algorithm works}
+	\label{algorithm test}
+\end{figure}
 
-For the algorithm we want the stack to be able to compute a two dimensional FFT and, the inverse two dimensional FFT.\\ To test if it works we will feed the program an image of which we know what the outcome should be. Like shown in the examples from figure \ref{2d_sine_with_transform}. Then if it passes that test we will feed that image back into the stack to see if it's inverse FFT transformation brings it back to the original image. If so, the program works.\\
+Now we also want to know what the influence of multi processing is on power consumption and computation speed, so we will have to design the algorithm in a way that enables us to add and subtract processors without compromising the algorithm. That way we can run the algorithm on a single to \(n\) amount of processors, and measure the effects. 
 
+\newpage
 
-as illustrated here (Illustration image of test here) 
-\\
+\section{The FFTW library}
 
-Now we also want to know what the influence of multi processing is on power consumption and computation speed, so we will have to design the algorithm in a way that enables us to add and subtract processors and it should still be able to run. That way we can run the algorithm on a single to \(n\) amount of processors, and measure the effects. 
+To make the project as open access as possible we have chosen for using a library that is maintained, and released under a free public license.\par The FFTW\footnote{Fastest Fourier Transform in the West} library is a library written in C++. It can preform Discrete FFT and IFFT, it can do this with multiple threads. And when using MPI\footnote{Message Passing Interface} it can do it with multiple processors. The FFTW software is free software released under the GNU General Public License. \\ This checks all the boxes for what we want our test platform to be able to do so this is the library we will use. \par 
+First we created a program that could run the test as described in figure[\ref{algorithm test}] For this we also needed a way to parse and generate bitmaps, Another free licensed library was used for that bit,  bitmap\_image.hpp from partow.net. For the generation of the input string (a 2d sine wave) Matlab was used. Here a pseudo version of the main function is shown: 
 
+\begin{lstlisting}[language=C, caption= FFTW image process main.cpp]
+int main(int argc, char **argv) {
 
+/* create bmp file from input string */
+input_string_to_bmp(real_part);
+/* fill an array with data  */
+fill_signal_1d(signal, real_part, imaginary_part);
+/* create plan for time domain to freq domain  */
+fftw_plan plan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
+sqrt(NUM_POINTS), signal, result,FFTW_FORWARD,FFTW_ESTIMATE);
+/* create plan for freq domain back to time */
+fftw_plan iplan = fftw_plan_dft_2d(sqrt(NUM_POINTS),
+sqrt(NUM_POINTS), result, iresult,FFTW_BACKWARD,FFTW_ESTIMATE);
+/* execute plans and print the magnitudes */
+fftw_execute(plan);
+calc_magnitude(result);
+/* make bmp from freq domain */
+FFT_string_to_bmp(result);
+fftw_execute(iplan);
+/* make bmp from inverse fft */
+IFFT_string_to_bmp(iresult);
+calc_back_to_samples(iresult);
 
+return 0;
+}
 
+\end{lstlisting}
+The code yielded the following results:
+First the input string is converted to bitmap to check if the input string is interpreted the right way. 
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{input_string}
+	\caption{: The input string converted to bitmap }
+	\label{input string}
+\end{figure}
+
+This two dimensional sine wave is then transformed to the Fourier domain, and if the program works correctly we should expect a mostly black image with some white dots. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{processed_string_frequency_domain}
+	\caption{: The input string converted to the Fourier domain}
+	\label{processed_string_frequency_domain}
+\end{figure}
+
+Now finally to be one hundred percent certain that the program works an inverse Fourier is applied to the image. If this returns the original image then we can deduce that the program doesn't affect the data in it's transformation and works correctly. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=10]{processed_string_time_domain}
+	\caption{: The Fourier transformed string transformed back to the time domain}
+	\label{processed_string_time_domain}
+\end{figure}
+
+As shown the program works as expected and can now be used to interpret images from radio astronomy.
+
+\section{Message Passing Interface}
+
+There is however one more change that has to be made for the program to meet our requirements, multiprocessing. MPI is the protocol that multi processing systems use to communicate between processors. Using MPI with the raspberry pi can be done using one of several libraries, we decided to use the Mpich library. \par This however did not turn out to be a wise choice. For some reason unbeknownst to us it just wouldn't work, the error messages were impossible to decipher and when looked up would lead you to years old mailing lists from Intel. After having done several re-installs which took quite some time, and following the provided install guide step by step. It still wouldn't work, not even the example codes included in the Mpich install package. \par So having concluded that Mpich-3.3.2 does not work with the raspberry pi's, another MPI library will be chosen. The setup now uses the Open MPI library which is installed by apt, and this works without issues. 
+  
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography.bib}
