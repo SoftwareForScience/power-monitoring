@@ -1,0 +1,29 @@
+---
+- name: This script installs all required packages
+  hosts: cluster
+  tasks:
+  - name: Create temporary script folder
+    shell: mkdir /home/pi/install
+
+  - name: Copy init script to pi's
+    copy:
+      src: ./Scripts/ansible.sh
+      dest: /home/pi/install/ansible.sh
+
+  - name: Make shell scripts executable
+    shell: sudo chmod +x /home/pi/install/ansible.sh
+
+  - name: execute ansible.sh
+    shell: sudo bash /home/pi/install/ansible.sh
+
+  - name: Delete install folder
+    shell: rm -rf /home/pi/install
+
+  - name: Pull power meter docker image
+    shell: "sudo git clone https://gitlab.twizzel.net/hva/sfs-power-monitoring/metricbeat-arm64-prometheus-powermeter.git"
+
+  - name: Navigate to power meter docker image
+    shell: "cd metricbeat-arm64-prometheus-powermeter"
+
+  - name: Start docker containers
+     shell: "sudo docker-compose up -d"

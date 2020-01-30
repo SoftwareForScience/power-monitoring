@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.b#1
 *.s#1
 *.b#2
@@ -43,3 +44,103 @@ verslag/algoritme.log
 
 *.aux
 >>>>>>> main/FFT
+=======
+# OS Generated Files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.git
+desktop.ini
+$RECYCLE.BIN/
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.bak
+*.psd
+*.ai
+*.eps
+*.tpl.php
+
+# Compiled Source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+node_modules/
+.sass-cache/
+npm-debug.lo
+
+# IDE and Text Editors #
+########################
+
+# Vim
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+ 
+# Eclipse
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+.buildpath
+ 
+# PhpStorm
+.idea/
+ 
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
+ 
+# Sublime Text
+/*.sublime-project
+*.sublime-workspace
+ 
+# Netbeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Thorium
+uploads/
+>>>>>>> e9df2e2c837810f23600c53f38dea1c861c295a9

@@ -1,0 +1,6 @@
+---
+- name: Kill power monitoring process
+  command: pkill -f metric_INA219.py
+
+- name: Kill prometheus server
+  command: pkill -f prometheus
