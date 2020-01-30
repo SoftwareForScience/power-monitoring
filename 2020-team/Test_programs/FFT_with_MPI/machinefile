@@ -1,0 +1,9 @@
+
+#these are the ip adresses given by our router
+#change these for your own
+
+pi@192.168.3.11 node0
+pi@192.168.3.16 node1
+pi@192.168.3.5  node2
+pi@192.168.3.37 node3
+

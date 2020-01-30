@@ -1,0 +1,2 @@
+\subsection{Running}
+A prerequisite of running the client, is that the logger is already running on the Pi that does the data collection. If not, you \textbf{will} get a \code{connection refused} error. If it is running, you can start the clients by running \code{ansible -m command -a "powermonitoring/client/src/./echoclient 20001 raspberrypi-g.local" sfs}. Here \code{raspberrypi-g.local} is the hostname of the Raspberry Pi running the logger, and \code{20001} is the port on which the logger listens.

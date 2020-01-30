@@ -1,0 +1,23 @@
+#get testprograms impossible untill git works 
+--- 
+- name: Get and compile testprograms
+  hosts: sfs
+  tasks:
+    - name: make FFT_with_MPI
+      command: make 
+      args:
+          chdir: FFT/Test_programs/FFT_with_MPI 
+    
+    - name: make FFT_with_multithreading
+      command: make 
+      args:
+          chdir: FFT/Test_programs/FFT_with_multithreading
+    
+    - name: make Mandelbrot_with_MPI
+      command: make 
+      args:
+          chdir: FFT/Test_programs/Mandelbrot_with_MPI
+
+
+
+
