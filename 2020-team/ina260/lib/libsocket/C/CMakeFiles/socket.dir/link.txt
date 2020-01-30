@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -dynamiclib -Wl,-headerpad_max_install_names  -o libsocket.dylib -install_name /Users/stefanschokker/Documents/school/SFS/power/ina260/lib/libsocket/C/libsocket.dylib CMakeFiles/socket_o.dir/inet/libinetsocket.c.o CMakeFiles/socket_o.dir/unix/libunixsocket.c.o 

@@ -46,4 +46,3 @@
 	path = 2019-team/submodules/docker-cluster
 	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/docker-cluster.git
 	branch = master
-

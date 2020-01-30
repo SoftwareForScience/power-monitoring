@@ -1,0 +1,60 @@
+
+--- 
+- name: Install FFT dependencies (this might take a while)
+  hosts: sfs
+  tasks:
+    - name: Get aptitude
+      become: true
+      apt:
+        name: aptitude
+        force_apt_get: yes
+
+    - name: Get openMPI packages
+      become: true
+      apt:
+        pkg:
+        - git
+        - openmpi-bin
+        - openmpi-common
+        - libopenmpi3
+        - libopenmpi-dev
+        state: latest
+
+############################ fftw intallation 
+
+    - name: Get repo
+      git:
+        repo: "git@github.com:SoftwareForScience/power-monitoring.git"
+        dest: powermonitoring
+        recursive: yes
+
+    - name: Create target directory
+      file: path=powermonitoring/2020-team/FFT/src state=directory 
+
+    - name: get fftw-3.3.8.tar.gz
+      copy:
+        src: powermonitoring/2020-team/ansible/src/fftw-3.3.8.tar.gz
+        dest: powermonitoring/2020-team/FFT/src
+       
+    - name: Unarchive fftw-3.3.8
+      command: tar -C powermonitoring/2020-team/FFT/src -xvf powermonitoring/2020-team/ansible/src/fftw-3.3.8.tar.gz
+      become: true
+
+    - name: configure fftw
+      command: ./configure --enable-mpi --enable-threads
+      args:
+          chdir: powermonitoring/2020-team/FFT/src/fftw-3.3.8 
+      become: true
+
+    - name: make fftw (this might take a while)
+      command: make -j 3
+      args:
+          chdir: powermonitoring/2020-team/FFT/src/fftw-3.3.8 
+      become: true
+
+    - name: make install fftw
+      command: make install
+      args:
+          chdir: powermonitoring/2020-team/FFT/src/fftw-3.3.8 
+      become: true
+
