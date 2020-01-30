@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++17 -lm -lwiringPi -lsocket++ -lpugixml -lpthread -Wall   CMakeFiles/ina260.dir/lib/pugixml/src/pugixml.cpp.o CMakeFiles/ina260.dir/src/I2CDevice.cpp.o CMakeFiles/ina260.dir/src/inaDevice.cpp.o CMakeFiles/ina260.dir/src/logger.cpp.o CMakeFiles/ina260.dir/src/main.cpp.o CMakeFiles/ina260.dir/src/server.cpp.o  -o ina260 -lstdc++fs -lpugixml -lsocket++ 

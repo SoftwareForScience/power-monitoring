@@ -1,0 +1,3 @@
+/tmp/tmp.t3q1iRUkwh/cmake-build-default-pi-g/CMakeFiles/rebuild_cache.dir
+/tmp/tmp.t3q1iRUkwh/cmake-build-default-pi-g/CMakeFiles/ina260.dir
+/tmp/tmp.t3q1iRUkwh/cmake-build-default-pi-g/CMakeFiles/edit_cache.dir
