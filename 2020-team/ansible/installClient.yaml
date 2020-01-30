@@ -19,26 +19,25 @@
         - autoconf
         - automake
         state: latest
-    - name: pre-create folder
-      command: mkdir -p powermonitoring/client/src/
+
+    - name: Get repo
+      git:
+        repo: "git@github.com:SoftwareForScience/power-monitoring.git"
+        dest: powermonitoring
+        recursive: yes
 
     - name: Run cmake in submodule (Libsocket++)
       command: cmake .
       args:
-        chdir: powermonitoring/client/lib/libsocket/
+        chdir: powermonitoring/2020-team/client/lib/libsocket/
 
     - name: Build submodule (Libsocket++)
       become: true
       make:
-        chdir: powermonitoring/client/lib/libsocket
+        chdir: powermonitoring/2020-team/client/lib/libsocket
         target: install
-
-    - name: Copy src file
-      copy:
-        src: /Users/stefanschokker/Downloads/echo_client_conn.cpp
-        dest: powermonitoring/client/src/echo_client_conn.cpp
 
     - name: Compile client
       command: g++ -std=c++11 -lsocket++ -o echoclient echo_client_conn.cpp
       args:
-        chdir: powermonitoring/client/src/
+        chdir: powermonitoring/2020-team/client/src/

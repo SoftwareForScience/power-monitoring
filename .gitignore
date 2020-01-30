@@ -57,11 +57,11 @@ $RECYCLE.BIN/
 ############
 *.7z
 *.dmg
-*.gz
+#*.gz	! 2020-team/ansible/src/
 *.iso
 *.jar
 *.rar
-*.tar
+#*.tar	! 2020-team/ansible/src/
 *.zip
 *.bak
 *.psd

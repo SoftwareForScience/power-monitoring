@@ -13,6 +13,7 @@
       become: true
       apt:
         pkg:
+        - git
         - openmpi-bin
         - openmpi-common
         - libopenmpi3
@@ -22,15 +23,15 @@
 ############################ fftw intallation 
 
     - name: Create target directory
-      file: path=FFT/src state=directory 
+      file: path=powermonitoring/2020-team/src state=directory 
 
     - name: get fftw-3.3.8.tar.gz
       copy:
-        src: src/fftw-3.3.8.tar.gz
+        src: powermonitoring/2020-team/ansible/src/fftw-3.3.8.tar.gz
         dest: FFT/src
        
     - name: Unarchive fftw-3.3.8
-      command: tar -C FFT/src -xvf FFT/src/fftw-3.3.8.tar.gz
+      command: tar -C FFT/src -xvf powermonitoring/2020-team/ansible/src/fftw-3.3.8.tar.gz
       become: true
 
     - name: configure fftw
