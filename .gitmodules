@@ -1,20 +1,23 @@
-<<<<<<< HEAD
-[submodule "ina260/lib/pugixml"]
-	path = ina260/lib/pugixml
+[submodule "2020-team/ina260/lib/pugixml"]
+	path = 2020-team/ina260/lib/pugixml
 	url = https://github.com/zeux/pugixml.git
-[submodule "ina260/lib/date"]
-	path = ina260/lib/date
+	branch = master
+[submodule "2020-team/ina260/lib/date"]
+	path = 2020-team/ina260/lib/date
 	url = https://github.com/HowardHinnant/date.git
-[submodule "ina260/lib/args"]
-	path = ina260/lib/args
+	branch = master
+[submodule "2020-team/ina260/lib/args"]
+	path = 2020-team/ina260/lib/args
 	url = https://github.com/Taywee/args.git
-[submodule "ina260/lib/libsocket"]
-	path = ina260/lib/libsocket
+	branch = master
+[submodule "2020-team/ina260/lib/libsocket"]
+	path = 2020-team/ina260/lib/libsocket
 	url = https://github.com/dermesser/libsocket.git
-[submodule "client/lib/libsocket"]
-	path = client/lib/libsocket
+	branch = master
+[submodule "2020-team/client/lib/libsocket"]
+	path = 2020-team/client/lib/libsocket
 	url = https://github.com/dermesser/libsocket
-=======
+	branch = master
 [submodule "2019-team/submodules/ansible"]
 	path = 2019-team/submodules/ansible
 	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/ansible.git
@@ -43,4 +46,4 @@
 	path = 2019-team/submodules/docker-cluster
 	url = https://gitlab.twizzel.net/hva/sfs-power-monitoring/docker-cluster.git
 	branch = master
->>>>>>> e9df2e2c837810f23600c53f38dea1c861c295a9
+
