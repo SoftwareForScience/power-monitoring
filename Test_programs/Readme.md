@@ -41,7 +41,7 @@ it can fourier transform some data with parralel processing using mpi and the FF
 
  To compile each file has a makefile 
 
- To run the mpi programs use " mpiexec -n 'amount of processes' -f machinefile ./'the program' 
+ To run the mpi programs use " mpiexec -n 'amount of processes' -machinefile machinefile ./'the program' 
 
  To run the multithreading FFT program use ./FFT_multithread 'amount of threads'
  
